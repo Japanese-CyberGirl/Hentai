@@ -11,15 +11,15 @@ root.title("Основная программа")
 canv = Canvas(root, width=900, height=900, bg="white")  # создаем оси графика координатной плоскости
 
 def pole(xpos, ypos):
-    canv.create_line(xpos - 25, ypos - 75, xpos - 25, ypos + 75, width = 3)
-    canv.create_line(xpos + 25, ypos - 75, xpos + 25, ypos + 75, width = 3)
-    canv.create_line(xpos - 75, ypos + 25, xpos + 75, ypos + 25, width = 3)
-    canv.create_line(xpos - 75, ypos - 25, xpos + 75, ypos - 25, width = 3)
+    canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width = 3)
+    canv.create_line(xpos + 50, ypos - 150, xpos + 50, ypos + 150, width = 3)
+    canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
+    canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
 
 
 
 pole(300,300)
-pole(300,460)
+pole(350,460)
 pole(300,620)
 
 pole(460,300)
