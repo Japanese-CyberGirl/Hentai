@@ -83,13 +83,15 @@ quitButton.place(x=1200, y=10)
 canv.pack()
 
 # создание игральных кнопок крестиков ноликов
-testbutton1 = Button(root, text="test1", font='Times 13', height=4,width=9, command = lambda: playgame(512,415))
-testbutton1.place(x=512, y=415)
+testbutton1 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
+                     height=5,width=10, relief='solid', command = lambda:[playgame(512,440),testbutton1.destroy()])
+testbutton1.place(x=918, y=384)
 
 print(moves_counter)
 
-testbutton2 = Button(root, text="test2", font='Times 13', height=4,width=9, command = lambda: playgame(612, 415))
-testbutton2.place(x=612, y=415)
+testbutton2 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
+                     height=4,width=9, relief='solid', command = lambda: [playgame(612, 440), testbutton2.destroy()])
+testbutton2.place(x=1025, y=395)
 
 print(moves_counter)
 
