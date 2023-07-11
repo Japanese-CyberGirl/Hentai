@@ -1,1 +1,30 @@
+from tkinter import *
+from math import sqrt
+from tkinter.filedialog import askopenfilename
+import csv
+import numpy as np
 
+root = Tk()
+root.geometry("800x650")
+root.title("Основная программа")
+
+canv = Canvas(root, width=1000, height=1000, bg="white")  # создаем оси графика координатной плоскости
+
+
+#canv.create_line(z_koor[0] + 0.5, w_koor[0] - 0.5, z_koor[1] + 0.5, w_koor[1] - 0.5)
+
+ # Параметрами метода create_line() являются координаты x и y, которые обозначают стартовые и конечные точки линии.
+
+btn_clear = Button(root, text="Начать Игру", font='Times 20', height=2,width=15).place(x=850, y=10)
+
+
+
+
+Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=5,y=20)
+Label(root,text="Крестики-Нолики на максималках",font='Times 17').place(x=5,y=70)
+
+
+quitButton = Button(root, text="Закрыть окно", font='Times 20', height=2,width=15, command=quit)
+quitButton.place(x=1200, y=10)
+canv.pack()
+root.mainloop()
