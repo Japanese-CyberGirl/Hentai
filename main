@@ -8,7 +8,7 @@ root = Tk()
 root.geometry("800x650")
 root.title("Основная программа")
 
-canv = Canvas(root, width=900, height=900, bg="white")  # создаем оси графика координатной плоскости
+canv = Canvas(root, width=1000, height=1000, bg="white")  # создаем оси графика координатной плоскости
 
 def pole(xpos, ypos):
     canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width = 3)
@@ -16,26 +16,40 @@ def pole(xpos, ypos):
     canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
     canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
 
+canv.create_line(45, 100, 45, 1000, width = 5) #1 вертикальная линия
 
+canv.create_line(43, 100, 978, 100, width = 5) #1 горизонтальная линия
 
-pole(300,300)
-pole(350,460)
-pole(300,620)
+pole(200,250)
+pole(200,560)
+pole(200,870)
 
-pole(460,300)
-pole(460,460)
-pole(460,620)
+canv.create_line(355, 100, 355, 1000, width = 5) #2 вертикальная линия
 
-pole(620,300)
-pole(620,460)
-pole(620,620)
+canv.create_line(43, 405, 978, 405, width = 5) #2 горизонтальная линия
+
+pole(510,250)
+pole(510,560)
+pole(510,870)
+
+canv.create_line(665, 100, 665, 1000, width = 5) #3 вертикальная линия
+
+canv.create_line(43, 715, 978, 715, width = 5) #3 горизонтальная линия
+
+pole(820,250)
+pole(820,560)
+pole(820,870)
+
+canv.create_line(975, 100, 975, 1000, width = 5) #3 вертикальная линия
+
+canv.create_line(43, 1000, 978, 1000, width = 5) #3 горизонтальная линия
 
 
 #canv.create_line(z_koor[0] + 0.5, w_koor[0] - 0.5, z_koor[1] + 0.5, w_koor[1] - 0.5)
 
  # Параметрами метода create_line() являются координаты x и y, которые обозначают стартовые и конечные точки линии.
 
-btn_clear = Button(root, text="Начать Игру", font='Times 20', height=2,width=15).place(x=850, y=10)
+btn_clear = Button(root, text="Новая Игра", font='Times 20', height=2,width=15).place(x=850, y=10)
 
 
 Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=5,y=20)
