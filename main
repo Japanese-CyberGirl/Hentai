@@ -2,6 +2,7 @@ from tkinter import *
 from math import sqrt
 from tkinter.filedialog import askopenfilename
 import csv
+import time
 import numpy as np
 moves_counter = 1 #создание счетчика ходов игроков
 root = Tk()
@@ -73,27 +74,37 @@ x = 275 # координата по оси абсцисс
 y = 75  # координата по оси ординат
 
 buttons = [] #матрица наших клеток
-local_counter_oy = 0
+local_counter_oy = 1
 for i in range(9):
     local_counter_ox = 0
     buttons.append([])
     for j in range(9):
-        but = Button(root, text="", background = 'white', foreground = "white", font='Times 12', height=5,width=10, relief='solid')
+        but = Button(root, text="", background = 'white', foreground = "white", font='Times 11', height=5,width=11, relief='solid')
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
-        if (local_counter_ox >= 3 and local_counter_ox < 4) or (local_counter_ox >= 6 and local_counter_ox < 7):
-            but.place(x=x+10, y=y)
+        if (local_counter_ox == 3 and local_counter_oy==3) or (local_counter_ox == 6
+            and local_counter_oy==6):
+            but.place(x=x+10, y=y+10)
+            x+=10
+            y+=10
+        elif ((local_counter_ox==3) or (local_counter_ox==6)):
+            but.place(x=x + 10, y=y)
+            x+=10
         else:
             but.place(x=x,y=y)
+
         buttons[i].append(but)
         x += 100
         local_counter_ox += 1
+    local_counter_oy += 1
     x = 275
     y += 100
 
-
 #создание надписи с разработчиками программы,
-#Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=5,y=20)
-#Label(root,text="Крестики-Нолики на максималках",font='Times 17').place(x=5,y=70)
+Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1280,y=850)
+Label(root,text="Крестики-Нолики на максималках",font='Times 17').place(x=1370,y=885)
+Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1495,y=955)
+Label(root,text="главный разработчик - @cybernetic_anime_girl",font='Times 17').place(x=1245,y=920)
+Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 
 #создание кнопки новой игры
 btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2,width=15).place(x=850, y=5)
@@ -104,6 +115,8 @@ canv.pack()
 
 
 root.mainloop()
+
+
 
 #техническая часть
 
