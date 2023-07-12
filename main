@@ -78,6 +78,8 @@ local_counter_oy = 0
 for i in range(9):
     local_counter_oy += 1
     local_counter_ox = 0
+    kostyl=0
+    
     buttons.append([])
     for j in range(9):
         local_counter_ox += 1
@@ -85,23 +87,30 @@ for i in range(9):
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
 
         #написать размещение
+
+        if kostyl ==1:
+            y += 10
         if (local_counter_ox==4 or local_counter_ox==7):
             but.place(x=x+10,y=y)
             x+=10
-        if (local_counter_oy==4 or local_counter_oy==7 and local_counter_ox!=4 and local_counter_ox!=7):
+
+        if (local_counter_oy==4 or local_counter_oy==7):
+            kostyl += 1
             but.place(x=x,y=y+10)
+
         else:
             but.place(x=x,y=y)
         buttons[i].append(but)
+
         x += 100
     x = 275
     y += 100
 
 #создание надписи с разработчиками программы,
-Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1280,y=850)
-Label(root,text="Крестики-Нолики на максималках",font='Times 17').place(x=1370,y=885)
+Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1282,y=850)
+Label(root,text="''Крестики-Нолики на максималках''",font='Times 17').place(x=1352,y=885)
 Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1495,y=955)
-Label(root,text="главный разработчик - @cybernetic_anime_girl",font='Times 17').place(x=1245,y=920)
+Label(root,text="разработчики - @cybernetic_anime_girl & Христос",font='Times 17').place(x=1209,y=920)
 Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 
 #создание кнопки новой игры
