@@ -17,16 +17,18 @@ def pole(xpos, ypos): # функция создания одного поля 3�
     canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
 
 
-def playgame(xpos,ypos): #функция для кнопок - вывод крестика/нолика в зависимости от хода
+def playgame(xpos,ypos,i,j): #функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
     if moves_counter%2==1:
-
+        #определение, будет крестик или нолик в зависимости от глобального счетчика
         canv.create_line(xpos-46, ypos-46, xpos+46, ypos + 46, width=3, fill="#e31e1e")
         canv.create_line(xpos+46, ypos-46, xpos - 46, ypos + 46, width = 3, fill="#e31e1e")
     else:
+
         canv.create_oval(xpos+46, ypos - 46, xpos-46, ypos+46, outline="blue",width=2)
     moves_counter += 1
-    print(moves_counter)
+    print(f"счетчик ходов: {moves_counter}")
+    buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
 
 
 #создание мини-поля стратегического положения
@@ -46,91 +48,47 @@ def TESTOVAYA():
     print("HENTAI ANIME LOLI")
 
 #создание разделительных линий и размещение полей 3х3 на общем поле.
-canv.create_line(45, 80, 45, 1000, width = 7) #1 вертикальная линия
 
-canv.create_line(43, 76, 978, 76, width = 7) #1 горизонтальная линия
+#canv.create_line(65, 75, 65, 985, width = 7) #1 вертикальная линия
 
-pole(200,230)
-pole(200,540)
-pole(200,850)
+#canv.create_line(43, 76, 978, 76, width = 7) #1 горизонтальная линия
 
-canv.create_line(355, 80, 355, 1000, width = 7) #2 вертикальная линия
+#canv.create_line(355, 80, 355, 1000, width = 7) #2 вертикальная линия
 
-canv.create_line(43, 385, 978, 385, width = 7) #2 горизонтальная линия
+#canv.create_line(43, 385, 978, 385, width = 7) #2 горизонтальная линия
 
-pole(510,230)
-pole(510,540)
-pole(510,850)
+#canv.create_line(665, 80, 665, 1000, width = 7) #3 вертикальная линия
 
-canv.create_line(665, 80, 665, 1000, width = 7) #3 вертикальная линия
+#canv.create_line(43, 695, 978, 695, width = 7) #3 горизонтальная линия
 
-canv.create_line(43, 695, 978, 695, width = 7) #3 горизонтальная линия
+#canv.create_line(975, 80, 975, 1000, width = 7) #4 вертикальная линия
 
-pole(820,230)
-pole(820,540)
-pole(820,850)
-
-canv.create_line(975, 80, 975, 1000, width = 7) #4 вертикальная линия
-
-canv.create_line(43, 1000, 978, 1000, width = 7) #4 горизонтальная линия
-
-
-print(f"счетчик ходов: {moves_counter}")
-#создание кнопок для игры..... =(
-#canv.create_line(0,540,500,540,width = 3, fill = "red")
-
-
-b5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(510,230),b5_button.destroy()])
-b5_button.place(x=669, y=177)
-
-e5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(510,540),e5_button.destroy()])
-e5_button.place(x=669, y=485)
-
-h5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(510,850),h5_button.destroy()])
-h5_button.place(x=669, y=793)
-
-
-a5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(200,230),a5_button.destroy()])
-a5_button.place(x=359, y=177)
-
-d5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(200,540),d5_button.destroy()])
-d5_button.place(x=359, y=485)
-
-g5_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(200,850),g5_button.destroy()])
-g5_button.place(x=359, y=795)
-
-
-a1_button = Button(root, text="",background = 'white', foreground = "white", font='Times 12',
-                    height=5,width=10, relief='solid', command = lambda:[playgame(100,130),a1_button.destroy()])
-a1_button.place(x=257, y=77)
+#canv.create_line(43, 1000, 978, 1000, width = 7) #4 горизонтальная линия
 
 
 
+#создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
 
+x = 275 # координата по оси абсцисс
+y = 75  # координата по оси ординат
 
-
-#canv.create_line(z_koor[0] + 0.5, w_koor[0] - 0.5, z_koor[1] + 0.5, w_koor[1] - 0.5)
-
- # Параметрами метода create_line() являются координаты x и y, которые обозначают стартовые и конечные точки линии.
-
-
-# создание тестовых кнопок
-
-#testbutton1 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
-                    # height=5,width=10, relief='solid', command = lambda:[playgame(512,440),testbutton1.destroy()])
-#testbutton1.place(x=918, y=384)
-
-
-
-#testbutton2 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
-                    # height=4,width=9, relief='solid', command = lambda: [playgame(612, 440), testbutton2.destroy()])
-#testbutton2.place(x=1025, y=395)
+buttons = [] #матрица наших клеток
+local_counter_oy = 0
+for i in range(9):
+    local_counter_ox = 0
+    buttons.append([])
+    for j in range(9):
+        but = Button(root, text="", background = 'white', foreground = "white", font='Times 12', height=5,width=10, relief='solid')
+        but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
+        if (local_counter_ox >= 3 and local_counter_ox < 4) or (local_counter_ox >= 6 and local_counter_ox < 7):
+            but.place(x=x+10, y=y)
+        else:
+            but.place(x=x,y=y)
+        buttons[i].append(but)
+        x += 100
+        local_counter_ox += 1
+    x = 275
+    y += 100
 
 
 #создание надписи с разработчиками программы,
@@ -146,3 +104,19 @@ canv.pack()
 
 
 root.mainloop()
+
+#техническая часть
+
+#canv.create_line(z_koor[0] + 0.5, w_koor[0] - 0.5, z_koor[1] + 0.5, w_koor[1] - 0.5)
+
+ # Параметрами метода create_line() являются координаты x и y, которые обозначают стартовые и конечные точки линии.
+
+# создание тестовых кнопок
+
+#testbutton1 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
+                    # height=5,width=10, relief='solid', command = lambda:[playgame(512,440),testbutton1.destroy()])
+#testbutton1.place(x=918, y=384)
+
+#testbutton2 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
+                    # height=4,width=9, relief='solid', command = lambda: [playgame(612, 440), testbutton2.destroy()])
+#testbutton2.place(x=1025, y=395)
