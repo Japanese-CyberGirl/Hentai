@@ -74,28 +74,24 @@ x = 275 # координата по оси абсцисс
 y = 75  # координата по оси ординат
 
 buttons = [] #матрица наших клеток
-local_counter_oy = 1
+local_counter_oy = 0
 for i in range(9):
+    local_counter_oy += 1
     local_counter_ox = 0
     buttons.append([])
     for j in range(9):
+        local_counter_ox += 1
         but = Button(root, text="", background = 'white', foreground = "white", font='Times 11', height=5,width=11, relief='solid')
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
-        if (local_counter_ox == 3 and local_counter_oy==3) or (local_counter_ox == 6
-            and local_counter_oy==6):
-            but.place(x=x+10, y=y+10)
-            x+=10
-            y+=10
-        elif ((local_counter_ox==3) or (local_counter_ox==6)):
-            but.place(x=x + 10, y=y)
-            x+=10
-        else:
-            but.place(x=x,y=y)
 
+        if (local_counter_ox==4 or local_counter_ox==7):
+            but.place(x=x+10, y=y)
+            break
+        if (local_counter_oy==4 or local_counter_oy==7):
+            but.place(x=x, y=y+10)
+            break
         buttons[i].append(but)
         x += 100
-        local_counter_ox += 1
-    local_counter_oy += 1
     x = 275
     y += 100
 
