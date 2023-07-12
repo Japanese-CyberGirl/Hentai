@@ -88,6 +88,8 @@ for i in range(9):
         if (local_counter_ox==4 or local_counter_ox==7):
             but.place(x=x+10,y=y)
             x+=10
+        if (local_counter_oy==4 or local_counter_oy==7 and local_counter_ox!=4 and local_counter_ox!=7):
+            but.place(x=x,y=y+10)
         else:
             but.place(x=x,y=y)
         buttons[i].append(but)
