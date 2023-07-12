@@ -84,12 +84,8 @@ for i in range(9):
         but = Button(root, text="", background = 'white', foreground = "white", font='Times 11', height=5,width=11, relief='solid')
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
 
-        if (local_counter_ox==4 or local_counter_ox==7):
-            but.place(x=x+10, y=y)
-            break
-        if (local_counter_oy==4 or local_counter_oy==7):
-            but.place(x=x, y=y+10)
-            break
+        #написать размещение
+        pass
         buttons[i].append(but)
         x += 100
     x = 275
