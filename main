@@ -85,7 +85,7 @@ for i in range(9):
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
 
         #написать размещение
-        pass
+        but.place(x=x,y=y)
         buttons[i].append(but)
         x += 100
     x = 275
