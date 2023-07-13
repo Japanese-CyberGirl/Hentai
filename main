@@ -2,7 +2,6 @@ from tkinter import *
 from math import sqrt
 from tkinter.filedialog import askopenfilename
 import csv
-import time
 import numpy as np
 moves_counter = 1 #создание счетчика ходов игроков
 root = Tk()
@@ -11,26 +10,45 @@ root.title("Крестики Нолики на максималках - БММ 2
 canv = Canvas(root, width=1500, height=1000, bg="white")
 
 
-def pole(xpos, ypos): # функция создания одного поля 3х3
-    canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width = 3)
-    canv.create_line(xpos + 50, ypos - 150, xpos + 50, ypos + 150, width = 3)
-    canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
-    canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
+def TESTOVAYA():
+    print("HENTAI ANIME LOLI")
+
+def enterMatrix(x,y):
+    """
+    заполение массива расстояний на основе координат
+
+    :return:
+    """
+    branch = np.zeros([(x), (y)])  # Шаблон матрицы
+    for i in np.arange(0, x, 1):
+        for j in np.arange(0, y, 1):
+                branch[i, j] = float('inf')
+    return branch
 
 
-def playgame(xpos,ypos,i,j): #функция для кнопок - вывод крестика/нолика в зависимости от хода
+def playgame(xpos,ypos,i,j, number): #функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
     if moves_counter%2==1:
         #определение, будет крестик или нолик в зависимости от глобального счетчика
         canv.create_line(xpos-46, ypos-46, xpos+46, ypos + 46, width=3, fill="#e31e1e")
         canv.create_line(xpos+46, ypos-46, xpos - 46, ypos + 46, width = 3, fill="#e31e1e")
+        match_results[i][j] = 1
     else:
 
         canv.create_oval(xpos+46, ypos - 46, xpos-46, ypos+46, outline="blue",width=2)
+        match_results[i][j] = 0
     moves_counter += 1
     print(f"счетчик ходов: {moves_counter}")
     buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
+    print(match_results)
 
+
+
+def pole(xpos, ypos): # функция создания одного поля 3х3
+    canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width = 3)
+    canv.create_line(xpos + 50, ypos - 150, xpos + 50, ypos + 150, width = 3)
+    canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
+    canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
 
 #создание мини-поля стратегического положения
 
@@ -44,9 +62,6 @@ canv.create_line(1100,280,1100,580, width = 4)
 canv.create_line(1100,580,1400,580, width = 4)
 canv.create_line(1400,280,1100,280, width = 4)
 
-
-def TESTOVAYA():
-    print("HENTAI ANIME LOLI")
 
 #создание разделительных линий и размещение полей 3х3 на общем поле.
 
@@ -68,12 +83,14 @@ def TESTOVAYA():
 
 
 
+#создание матрицы, выводящей 0 и 1 в зависимости от того, какая фигура в клетке. изначально везде будет inf
+
 #создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
 
 x = 275 # координата по оси абсцисс
 y = 75  # координата по оси ординат
 
-buttons = [] #матрица наших клеток
+buttons = [] #матрица наших клеток-кнопок
 local_counter_oy = 0
 
 testcount=1 # я не знаю как это заработало, но это заработало. не трогайте, пожалуйста, эту часть кода (((вообще не трогайте!)))
@@ -84,7 +101,7 @@ for i in range(9):
     for j in range(9):
         local_counter_ox += 1
         but = Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid')
-        but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
+        but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j,testcount)) #фиксация функций клеток
 
         #написать размещение
         if testcount==37 or testcount==64:
@@ -101,10 +118,94 @@ for i in range(9):
             but.place(x=x,y=y)
         buttons[i].append(but)
         testcount+=1
-        print(f"testcount = {testcount}\n")
         x += 100
     x = 275
     y += 100
+
+
+
+
+# функции отрисовки крестика/нолика в стратегическом поле.
+
+def A_K(local_winner):
+    if local_winner == 1:
+        canv.create_line(1105, 290, 1195, 375, width=3, fill="#e31e1e")
+        canv.create_line(1195, 290, 1105, 375, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1105,290,1195,375, outline="blue", width=2)
+
+def B_K(local_winner):
+    if local_winner == 1:
+        canv.create_line(1205, 290, 1295, 375, width=3, fill="#e31e1e")
+        canv.create_line(1295, 290, 1205, 375, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1205,290,1295,375, outline="blue", width=2)
+        
+def C_K(local_winner):
+    if local_winner == 1:
+        canv.create_line(1105, 290, 1195, 375, width=3, fill="#e31e1e")
+        canv.create_line(1195, 290, 1105, 375, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1105,290,1195,375, outline="blue", width=2)
+        
+def D_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1105, 390, 1195, 475, width=3, fill="#e31e1e")
+        canv.create_line(1195, 390, 1105, 475, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1105,390,1195,475, outline="blue", width=2)
+
+def E_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1205, 390, 1295, 475, width=3, fill="#e31e1e")
+        canv.create_line(1295, 390, 1205, 475, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1205,390,1295,475, outline="blue", width=2)
+        
+def E_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1305, 390, 1395, 475, width=3, fill="#e31e1e")
+        canv.create_line(1395, 390, 1305, 475, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1305,390,1395,475, outline="blue", width=2)
+        
+def G_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1105, 490, 1195, 575, width=3, fill="#e31e1e")
+        canv.create_line(1195, 490, 1105, 575, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1105,490,1195,575, outline="blue", width=2)
+
+def H_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1205, 490, 1295, 575, width=3, fill="#e31e1e")
+        canv.create_line(1295, 490, 1205, 575, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1205,490,1295,575, outline="blue", width=2)
+        
+def I_K(local_winner):
+    if local_winner==1:
+        canv.create_line(1305, 490, 1395, 575, width=3, fill="#e31e1e")
+        canv.create_line(1395, 490, 1305, 575, width=3, fill="#e31e1e")
+    else:
+        canv.create_oval(1305,490,1395,575, outline="blue", width=2)
+
+
+#создание проверки вывода победы в стратегическое поле
+match_results = enterMatrix(9, 9)
+print(match_results)
+
+# if match_results[ ]:
+
+
+
+#создание кнопки новой игры
+btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2,width=15, command = lambda: H_K(0)).place(x=850, y=5)
+
+quitButton = Button(root, text="Закрыть окно", font='Times 16', height=2,width=15, command=quit)
+quitButton.place(x=1200, y=5)
+canv.pack()
+
 
 #создание надписи с разработчиками программы,
 Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1282,y=850)
@@ -114,34 +215,7 @@ Label(root,text="разработчики - @cybernetic_anime_girl & Христ�
 Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 
-#создание кнопки новой игры
-btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2,width=15).place(x=850, y=5)
-
-quitButton = Button(root, text="Закрыть окно", font='Times 16', height=2,width=15, command=quit)
-quitButton.place(x=1200, y=5)
-canv.pack()
 
 
 root.mainloop()
 
-
-
-
-
-
-
-#техническая часть
-
-#canv.create_line(z_koor[0] + 0.5, w_koor[0] - 0.5, z_koor[1] + 0.5, w_koor[1] - 0.5)
-
- # Параметрами метода create_line() являются координаты x и y, которые обозначают стартовые и конечные точки линии.
-
-# создание тестовых кнопок
-
-#testbutton1 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
-                    # height=5,width=10, relief='solid', command = lambda:[playgame(512,440),testbutton1.destroy()])
-#testbutton1.place(x=918, y=384)
-
-#testbutton2 = Button(root, text="",background = 'white', foreground = "white", font='Times 13',
-                    # height=4,width=9, relief='solid', command = lambda: [playgame(612, 440), testbutton2.destroy()])
-#testbutton2.place(x=1025, y=395)
