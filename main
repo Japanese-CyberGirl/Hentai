@@ -5,10 +5,15 @@ import csv
 import numpy as np
 moves_counter = 1 #создание счетчика ходов игроков
 root = Tk()
-root.geometry("2500x1000")
+root.geometry("1250x500")
 root.title("Крестики Нолики на максималках - БММ 2023")
 canv = Canvas(root, width=1500, height=1000, bg="white")
 
+def proverka_tac_polya(start_x, start_y):
+    print(match_results[start_x,start_y])
+    if (match_results[start_x,start_y]==match_results[start_x+1,start_y] and
+        match_results[start_x+2,start_y]):
+        print("AAAA")
 
 def TESTOVAYA():
     print("HENTAI ANIME LOLI")
@@ -37,14 +42,12 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
 
         canv.create_oval(xpos+46, ypos - 46, xpos-46, ypos+46, outline="blue",width=2)
         match_results[i][j] = 0
+
     moves_counter += 1
     print(f"счетчик ходов: {moves_counter}")
     buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
     print(match_results)
-
-    #проверка условия победы
-    if 
-
+    proverka_tac_polya(0,1)
 
 def pole(xpos, ypos): # функция создания одного поля 3х3
     canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width = 3)
@@ -195,9 +198,11 @@ def I_K(local_winner):
 
 #создание проверки вывода победы в стратегическое поле
 match_results = enterMatrix(9, 9)
+
 print(match_results)
 
-
+strategic_results = enterMatrix(3, 3)
+print(f"strategic results =\n {strategic_results}")
 
 
 
