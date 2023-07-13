@@ -75,33 +75,33 @@ y = 75  # координата по оси ординат
 
 buttons = [] #матрица наших клеток
 local_counter_oy = 0
+
+testcount=1 # я не знаю как это заработало, но это заработало. не трогайте, пожалуйста, эту часть кода (((вообще не трогайте!)))
 for i in range(9):
     local_counter_oy += 1
     local_counter_ox = 0
-    kostyl=0
-    
     buttons.append([])
     for j in range(9):
         local_counter_ox += 1
-        but = Button(root, text="", background = 'white', foreground = "white", font='Times 11', height=5,width=11, relief='solid')
+        but = Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid')
         but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j)) #фиксация функций клеток
 
         #написать размещение
+        if testcount==37 or testcount==64:
+            y+=10
 
-        if kostyl ==1:
-            y += 10
         if (local_counter_ox==4 or local_counter_ox==7):
             but.place(x=x+10,y=y)
             x+=10
 
         if (local_counter_oy==4 or local_counter_oy==7):
-            kostyl += 1
             but.place(x=x,y=y+10)
 
         else:
             but.place(x=x,y=y)
         buttons[i].append(but)
-
+        testcount+=1
+        print(f"testcount = {testcount}\n")
         x += 100
     x = 275
     y += 100
@@ -111,6 +111,7 @@ Label(root,text="Большая Математическая Мастерска�
 Label(root,text="''Крестики-Нолики на максималках''",font='Times 17').place(x=1352,y=885)
 Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1495,y=955)
 Label(root,text="разработчики - @cybernetic_anime_girl & Христос",font='Times 17').place(x=1209,y=920)
+Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
 
 #создание кнопки новой игры
@@ -122,6 +123,10 @@ canv.pack()
 
 
 root.mainloop()
+
+
+
+
 
 
 
