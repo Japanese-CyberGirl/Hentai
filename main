@@ -42,6 +42,8 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
     buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
     print(match_results)
 
+    #проверка условия победы
+    if 
 
 
 def pole(xpos, ypos): # функция создания одного поля 3х3
@@ -140,14 +142,14 @@ def B_K(local_winner):
         canv.create_line(1295, 290, 1205, 375, width=3, fill="#e31e1e")
     else:
         canv.create_oval(1205,290,1295,375, outline="blue", width=2)
-        
+
 def C_K(local_winner):
     if local_winner == 1:
         canv.create_line(1105, 290, 1195, 375, width=3, fill="#e31e1e")
         canv.create_line(1195, 290, 1105, 375, width=3, fill="#e31e1e")
     else:
         canv.create_oval(1105,290,1195,375, outline="blue", width=2)
-        
+
 def D_K(local_winner):
     if local_winner==1:
         canv.create_line(1105, 390, 1195, 475, width=3, fill="#e31e1e")
@@ -161,14 +163,14 @@ def E_K(local_winner):
         canv.create_line(1295, 390, 1205, 475, width=3, fill="#e31e1e")
     else:
         canv.create_oval(1205,390,1295,475, outline="blue", width=2)
-        
-def E_K(local_winner):
+
+def F_K(local_winner):
     if local_winner==1:
         canv.create_line(1305, 390, 1395, 475, width=3, fill="#e31e1e")
         canv.create_line(1395, 390, 1305, 475, width=3, fill="#e31e1e")
     else:
         canv.create_oval(1305,390,1395,475, outline="blue", width=2)
-        
+
 def G_K(local_winner):
     if local_winner==1:
         canv.create_line(1105, 490, 1195, 575, width=3, fill="#e31e1e")
@@ -182,7 +184,7 @@ def H_K(local_winner):
         canv.create_line(1295, 490, 1205, 575, width=3, fill="#e31e1e")
     else:
         canv.create_oval(1205,490,1295,575, outline="blue", width=2)
-        
+
 def I_K(local_winner):
     if local_winner==1:
         canv.create_line(1305, 490, 1395, 575, width=3, fill="#e31e1e")
@@ -195,12 +197,12 @@ def I_K(local_winner):
 match_results = enterMatrix(9, 9)
 print(match_results)
 
-# if match_results[ ]:
+
 
 
 
 #создание кнопки новой игры
-btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2,width=15, command = lambda: H_K(0)).place(x=850, y=5)
+btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2,width=15).place(x=850, y=5)
 
 quitButton = Button(root, text="Закрыть окно", font='Times 16', height=2,width=15, command=quit)
 quitButton.place(x=1200, y=5)
