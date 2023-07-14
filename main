@@ -9,11 +9,27 @@ root.geometry("1250x500")
 root.title("Крестики Нолики на максималках - БММ 2023")
 canv = Canvas(root, width=1500, height=1000, bg="white")
 
+
+
 def proverka_tac_polya(start_x, start_y):
     print(match_results[start_x,start_y])
     if (match_results[start_x,start_y]==match_results[start_x+1,start_y] and
         match_results[start_x+2,start_y]):
         print("AAAA")
+
+
+
+def test_krest():
+    global NUL_OR_KREST
+    NUL_OR_KREST = 1
+    print(NUL_OR_KREST)
+
+def test_nul():
+    global  NUL_OR_KREST
+    NUL_OR_KREST = 0
+    print(NUL_OR_KREST)
+
+
 
 def TESTOVAYA():
     print("HENTAI ANIME LOLI")
@@ -148,10 +164,10 @@ def B_K(local_winner):
 
 def C_K(local_winner):
     if local_winner == 1:
-        canv.create_line(1105, 290, 1195, 375, width=3, fill="#e31e1e")
-        canv.create_line(1195, 290, 1105, 375, width=3, fill="#e31e1e")
+        canv.create_line(1305, 290, 1395, 375, width=3, fill="#e31e1e")
+        canv.create_line(1395, 290, 1305, 375, width=3, fill="#e31e1e")
     else:
-        canv.create_oval(1105,290,1195,375, outline="blue", width=2)
+        canv.create_oval(1305,290,1395,375, outline="blue", width=2)
 
 def D_K(local_winner):
     if local_winner==1:
@@ -211,16 +227,52 @@ btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=
 
 quitButton = Button(root, text="Закрыть окно", font='Times 16', height=2,width=15, command=quit)
 quitButton.place(x=1200, y=5)
+
+testbutton_k = Button(root, text="", background = 'red' , foreground = "red", font='Times 15', height=2,width=15, command= lambda:[test_krest()]).place(x=1250, y=700)
+testbutton_n = Button(root, text="", background = 'blue' , foreground = "blue", font='Times 15', height=2,width=15,command= lambda:[test_nul()]).place(x=1500, y=700)
+
+#временная техническая часть
+A=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[A_K(NUL_OR_KREST),A.destroy()])
+A.place(x=1310,y=282)
+
+B=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[B_K(NUL_OR_KREST),B.destroy()])
+B.place(x=1410,y=282)
+
+C=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[C_K(NUL_OR_KREST),C.destroy()])
+C.place(x=1510,y=282)
+
+
+D=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[D_K(NUL_OR_KREST),D.destroy()])
+D.place(x=1310,y=382)
+
+E=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[E_K(NUL_OR_KREST),E.destroy()])
+E.place(x=1410,y=382)
+
+F=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[F_K(NUL_OR_KREST),F.destroy()])
+F.place(x=1510,y=382)
+
+
+G=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[G_K(NUL_OR_KREST),G.destroy()])
+G.place(x=1310,y=482)
+
+H=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[H_K(NUL_OR_KREST),H.destroy()])
+H.place(x=1410,y=482)
+
+I=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[I_K(NUL_OR_KREST),I.destroy()])
+I.place(x=1510,y=482)
+
+
 canv.pack()
 
-
+#command = lambda:[A_K(NUL_OR_KREST),A.destroy()])
 #создание надписи с разработчиками программы,
 Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1282,y=850)
 Label(root,text="''Крестики-Нолики на максималках''",font='Times 17').place(x=1352,y=885)
 Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1495,y=955)
 Label(root,text="разработчики - @cybernetic_anime_girl & Христос",font='Times 17').place(x=1209,y=920)
 Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
-Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
+Label(root,text="выбрать крестик",font='Times 17').place(x=1250,y=637)
+Label(root,text="выбрать нолик",font='Times 17').place(x=1500,y=637)
 
 
 
