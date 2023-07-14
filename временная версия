@@ -51,12 +51,12 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
     global moves_counter
     if moves_counter%2==1:
         #определение, будет крестик или нолик в зависимости от глобального счетчика
-        canv.create_line(xpos-46, ypos-46, xpos+46, ypos + 46, width=3, fill="#e31e1e")
-        canv.create_line(xpos+46, ypos-46, xpos - 46, ypos + 46, width = 3, fill="#e31e1e")
+        canv.create_line(xpos-46 + 210, ypos-46, xpos+46 + 210, ypos + 46, width=3, fill="#e31e1e")
+        canv.create_line(xpos+46 + 210, ypos-46, xpos - 46 + 210, ypos + 46, width = 3, fill="#e31e1e")
         match_results[i][j] = 1
     else:
 
-        canv.create_oval(xpos+46, ypos - 46, xpos-46, ypos+46, outline="blue",width=2)
+        canv.create_oval(xpos+46 + 210, ypos - 46, xpos-46 + 210, ypos+46, outline="blue",width=2)
         match_results[i][j] = 0
 
     moves_counter += 1
@@ -70,6 +70,7 @@ def pole(xpos, ypos): # функция создания одного поля 3�
     canv.create_line(xpos + 50, ypos - 150, xpos + 50, ypos + 150, width = 3)
     canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
     canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
+
 
 #создание мини-поля стратегического положения
 
@@ -108,7 +109,7 @@ canv.create_line(1400,280,1100,280, width = 4)
 
 #создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
 
-x = 275 # координата по оси абсцисс
+x = 65 # координата по оси абсцисс
 y = 75  # координата по оси ординат
 
 buttons = [] #матрица наших клеток-кнопок
@@ -140,7 +141,7 @@ for i in range(9):
         buttons[i].append(but)
         testcount+=1
         x += 100
-    x = 275
+    x = 65
     y += 100
 
 
@@ -228,51 +229,56 @@ btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=
 #quitButton = Button(root, text="Закрыть окно", font='Times 16', height=2,width=15, command=quit)
 #quitButton.place(x=1200, y=5)
 
-testbutton_k = Button(root, text="", background = 'red' , foreground = "red", font='Times 15', height=2,width=15, command= lambda:[test_krest()]).place(x=1250, y=700)
-testbutton_n = Button(root, text="", background = 'blue' , foreground = "blue", font='Times 15', height=2,width=15,command= lambda:[test_nul()]).place(x=1500, y=700)
+testbutton_k = Button(root, text="", background = 'red' , foreground = "red", font='Times 15', height=2,width=15, command= lambda:[test_krest()]).place(x=1250-230, y=700)
+testbutton_n = Button(root, text="", background = 'blue' , foreground = "blue", font='Times 15', height=2,width=15,command= lambda:[test_nul()]).place(x=1500-230, y=700)
+
+
 
 #временная техническая часть
 A=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[A_K(NUL_OR_KREST),A.destroy()])
-A.place(x=1310,y=282)
+A.place(x=1310-210,y=282)
 
 B=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[B_K(NUL_OR_KREST),B.destroy()])
-B.place(x=1410,y=282)
+B.place(x=1410-210,y=282)
 
 C=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[C_K(NUL_OR_KREST),C.destroy()])
-C.place(x=1510,y=282)
+C.place(x=1510-210,y=282)
 
 
 D=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[D_K(NUL_OR_KREST),D.destroy()])
-D.place(x=1310,y=382)
+D.place(x=1310-210,y=382)
 
 E=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[E_K(NUL_OR_KREST),E.destroy()])
-E.place(x=1410,y=382)
+E.place(x=1410-210,y=382)
 
 F=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[F_K(NUL_OR_KREST),F.destroy()])
-F.place(x=1510,y=382)
+F.place(x=1510-210,y=382)
 
 
 G=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[G_K(NUL_OR_KREST),G.destroy()])
-G.place(x=1310,y=482)
+G.place(x=1310-210,y=482)
 
 H=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[H_K(NUL_OR_KREST),H.destroy()])
-H.place(x=1410,y=482)
+H.place(x=1410-210,y=482)
 
 I=Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid',command = lambda:[I_K(NUL_OR_KREST),I.destroy()])
-I.place(x=1510,y=482)
+I.place(x=1510-210,y=482)
 
 
 canv.pack()
 
 #command = lambda:[A_K(NUL_OR_KREST),A.destroy()])
 #создание надписи с разработчиками программы,
-Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1282,y=850)
-Label(root,text="''Крестики-Нолики на максималках''",font='Times 17').place(x=1352,y=885)
-Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1495,y=955)
-Label(root,text="разработчики - @cybernetic_anime_girl & Христос",font='Times 17').place(x=1209,y=920)
-Label(root,text="стратегическое поле",font='Times 17').place(x=1350,y=237)
-Label(root,text="выбрать крестик",font='Times 17').place(x=1250,y=637)
-Label(root,text="выбрать нолик",font='Times 17').place(x=1500,y=637)
+Label(root,text="Большая Математическая Мастерская 2023",font='Times 17').place(x=1209-200,y=850-85)
+Label(root,text="''Крестики-Нолики на максималках''",font='Times 17').place(x=1209-200,y=885-85)
+Label(root,text="г. Новосибирск, 2023",font='Times 17').place(x=1209-200,y=955-85)
+Label(root,text="Разработчики - @cybernetic_anime_girl & Христос",font='Times 17').place(x=1209-200,y=920-85)
+
+Label(root,text="стратегическое поле",font='Times 17').place(x=1350-210,y=237-85)
+
+#технические кнопки
+Label(root,text="выбрать крестик",font='Times 16').place(x=1250-200,y=657)
+Label(root,text="выбрать нолик",font='Times 16').place(x=1500-200,y=657)
 
 
 
