@@ -37,7 +37,6 @@ def TESTOVAYA():
 def enterMatrix(x,y):
     """
     заполение массива расстояний на основе координат
-
     :return:
     """
     branch = np.zeros([(x), (y)])  # Шаблон матрицы
@@ -51,12 +50,12 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
     global moves_counter
     if moves_counter%2==1:
         #определение, будет крестик или нолик в зависимости от глобального счетчика
-        canv.create_line(xpos-46 + 210, ypos-46, xpos+46 + 210, ypos + 46, width=3, fill="#e31e1e")
-        canv.create_line(xpos+46 + 210, ypos-46, xpos - 46 + 210, ypos + 46, width = 3, fill="#e31e1e")
+        canv.create_line(xpos-35 + 210, ypos-35, xpos+35 + 210, ypos + 35, width=3, fill="#e31e1e")
+        canv.create_line(xpos+35 + 210, ypos-35, xpos - 35 + 210, ypos + 35, width = 3, fill="#e31e1e")
         match_results[i][j] = 1
     else:
 
-        canv.create_oval(xpos+46 + 210, ypos - 46, xpos-46 + 210, ypos+46, outline="blue",width=2)
+        canv.create_oval(xpos+35 + 210, ypos - 35, xpos-35 + 210, ypos+35, outline="blue",width=2)
         match_results[i][j] = 0
 
     moves_counter += 1
@@ -122,27 +121,27 @@ for i in range(9):
     buttons.append([])
     for j in range(9):
         local_counter_ox += 1
-        but = Button(root, text="", background = 'white' , foreground = "white", font='Times 11', height=5,width=11, relief='solid')
-        but.config(command=lambda x=x-158, y=y+50, i=i, j=j: playgame(x,y,i,j,testcount)) #фиксация функций клеток
+        but = Button(root, text="", background = 'white' , foreground = "white", font='Times 8', height=5,width=11, relief='solid')
+        but.config(command=lambda x=x-172, y=y+41, i=i, j=j: playgame(x,y,i,j,testcount)) #фиксация функций клеток
 
         #написать размещение
         if testcount==37 or testcount==64:
-            y+=10
+            y+=20
 
         if (local_counter_ox==4 or local_counter_ox==7):
-            but.place(x=x+10,y=y)
-            x+=10
+            but.place(x=x+20,y=y)
+            x+=20
 
         if (local_counter_oy==4 or local_counter_oy==7):
-            but.place(x=x,y=y+10)
+            but.place(x=x,y=y+20)
 
         else:
             but.place(x=x,y=y)
         buttons[i].append(but)
         testcount+=1
-        x += 100
+        x += 75
     x = 65
-    y += 100
+    y += 75
 
 
 
