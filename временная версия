@@ -50,12 +50,12 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
     global moves_counter
     if moves_counter%2==1:
         #определение, будет крестик или нолик в зависимости от глобального счетчика
-        canv.create_line(xpos-35 + 210, ypos-35, xpos+35 + 210, ypos + 35, width=3, fill="#e31e1e")
-        canv.create_line(xpos+35 + 210, ypos-35, xpos - 35 + 210, ypos + 35, width = 3, fill="#e31e1e")
+        canv.create_line(xpos-25 + 210, ypos-25, xpos+25 + 210, ypos + 25, width=3, fill="#e31e1e")
+        canv.create_line(xpos+25 + 210, ypos-25, xpos - 25 + 210, ypos + 25, width = 3, fill="#e31e1e")
         match_results[i][j] = 1
     else:
 
-        canv.create_oval(xpos+35 + 210, ypos - 35, xpos-35 + 210, ypos+35, outline="blue",width=2)
+        canv.create_oval(xpos+30 + 210, ypos - 30, xpos-30 + 210, ypos+30, outline="blue",width=2)
         match_results[i][j] = 0
 
     moves_counter += 1
@@ -108,7 +108,7 @@ def pole(xpos, ypos): # функция создания одного поля 3�
 
 #создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
 
-x = 65 # координата по оси абсцисс
+x = 15 # координата по оси абсцисс
 y = 15  # координата по оси ординат
 
 buttons = [] #матрица наших клеток-кнопок
@@ -122,25 +122,30 @@ for i in range(9):
     for j in range(9):
         local_counter_ox += 1
         but = Button(root, text="", background = 'white' , foreground = "white", font='Times 8', height=5,width=11, relief='solid')
-        but.config(command=lambda x=x-172, y=y+41, i=i, j=j: playgame(x,y,i,j,testcount)) #фиксация функций клеток
+
 
         #написать размещение
-        if testcount==37 or testcount==64:
-            y+=20
 
         if (local_counter_ox==4 or local_counter_ox==7):
             but.place(x=x+20,y=y)
             x+=20
 
+
         if (local_counter_oy==4 or local_counter_oy==7):
-            but.place(x=x,y=y+20)
+            but.place(x=x,y=y)
+
 
         else:
             but.place(x=x,y=y)
         buttons[i].append(but)
         testcount+=1
         x += 75
-    x = 65
+
+        if testcount==28 or testcount==55:
+            y+=20
+        but.config(
+            command=lambda x=x - 247, y=y + 41, i=i, j=j: playgame(x, y, i, j, testcount))  # фиксация функций клеток
+    x = 15
     y += 75
 
 
