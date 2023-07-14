@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import Text
 from math import sqrt
 from tkinter.filedialog import askopenfilename
 import csv
@@ -7,7 +8,7 @@ moves_counter = 1 #создание счетчика ходов игроков
 root = Tk()
 root.geometry("1250x500")
 root.title("Крестики Нолики на максималках - БММ 2023")
-canv = Canvas(root, width=1500, height=1000, bg="white")
+canv = Canvas(root, width=2000, height=2000, bg="white")
 
 
 
@@ -20,14 +21,18 @@ def proverka_tac_polya(start_x, start_y):
 
 
 def test_krest():
+    global moves_counter
     global NUL_OR_KREST
     NUL_OR_KREST = 1
     print(NUL_OR_KREST)
+    #moves_counter = 1
 
 def test_nul():
+    global moves_counter
     global  NUL_OR_KREST
     NUL_OR_KREST = 0
     print(NUL_OR_KREST)
+    #moves_counter=2
 
 
 
@@ -39,25 +44,39 @@ def enterMatrix(x,y):
     заполение массива расстояний на основе координат
     :return:
     """
+    counter = 0
     branch = np.zeros([(x), (y)])  # Шаблон матрицы
     for i in np.arange(0, x, 1):
         for j in np.arange(0, y, 1):
                 branch[i, j] = float('inf')
+                counter += 1
     return branch
 
 
 def playgame(xpos,ypos,i,j, number): #функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
     if moves_counter%2==1:
+        print(f"номер  = {number}")
+        if number == 27 or number == 54: #а это костыль =)
+            canv.create_line(xpos - 20 + 210, ypos - 20 - 20, xpos + 20 + 210, ypos + 20 - 20, width=3, fill="#e31e1e")
+            canv.create_line(xpos + 20 + 210, ypos - 20 - 20, xpos - 20 + 210, ypos + 20 - 20, width=3, fill="#e31e1e")
+            match_results[i][j] = 1
+            print('условие выполнено')
+        else:
         #определение, будет крестик или нолик в зависимости от глобального счетчика
-        canv.create_line(xpos-25 + 210, ypos-25, xpos+25 + 210, ypos + 25, width=3, fill="#e31e1e")
-        canv.create_line(xpos+25 + 210, ypos-25, xpos - 25 + 210, ypos + 25, width = 3, fill="#e31e1e")
-        match_results[i][j] = 1
+            canv.create_line(xpos-20 + 210, ypos-20, xpos+20 + 210, ypos + 20, width=3, fill="#e31e1e")
+            canv.create_line(xpos+20 + 210, ypos-20, xpos - 20 + 210, ypos + 20, width = 3, fill="#e31e1e")
+            match_results[i][j] = 1
+
     else:
-
-        canv.create_oval(xpos+30 + 210, ypos - 30, xpos-30 + 210, ypos+30, outline="blue",width=2)
-        match_results[i][j] = 0
-
+        print(f"номер  = {number}")
+        if number == 27 or number == 54:  # а это второй костыль =):
+            canv.create_oval(xpos + 20 + 210, ypos - 20 - 20, xpos - 20 + 210, ypos + 20 - 20, outline="blue", width=2)
+            match_results[i][j] = 0
+            print('условие выполнено')
+        else:
+            canv.create_oval(xpos+20 + 210, ypos - 20, xpos-20 + 210, ypos+20, outline="blue",width=2)
+            match_results[i][j] = 0
     moves_counter += 1
     print(f"счетчик ходов: {moves_counter}")
     buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
@@ -73,36 +92,28 @@ def pole(xpos, ypos): # функция создания одного поля 3�
 
 #создание мини-поля стратегического положения
 
-#canv.create_line(1100,380,1400,380, width = 3)
-#canv.create_line(1100,480,1400,480, width = 3)
-#canv.create_line(1200,580,1200,280, width = 3)
-#canv.create_line(1300,580,1300,280, width = 3)
+canv.create_line(1100,380,1400,380, width = 3)
+canv.create_line(1100,480,1400,480, width = 3)
+canv.create_line(1200,580,1200,280, width = 3)
+canv.create_line(1300,580,1300,280, width = 3)
 
-#canv.create_line(1400,280,1400,580, width = 4)
-#canv.create_line(1100,280,1100,580, width = 4)
-#canv.create_line(1100,580,1400,580, width = 4)
-#canv.create_line(1400,280,1100,280, width = 4)
+canv.create_line(1400,280,1400,580, width = 4)
+canv.create_line(1100,280,1100,580, width = 4)
+canv.create_line(1100,580,1400,580, width = 4)
+canv.create_line(1400,280,1100,280, width = 4)
 
 
 #создание разделительных линий и размещение полей 3х3 на общем поле.
 
-#canv.create_line(65, 75, 65, 985, width = 7) #1 вертикальная линия
+canv.create_line(0, 10, 740, 10, width = 7) #1 горизонтальная линия
+canv.create_line(0, 253, 740, 253, width = 7) #2 горизонтальная линия
+canv.create_line(0, 497, 740, 497, width = 7) #3 горизонтальная линия
+canv.create_line(0, 740, 740, 740, width = 7)#4 горизонтальная линия
 
-#canv.create_line(43, 76, 978, 76, width = 7) #1 горизонтальная линия
-
-#canv.create_line(355, 80, 355, 1000, width = 7) #2 вертикальная линия
-
-#canv.create_line(43, 385, 978, 385, width = 7) #2 горизонтальная линия
-
-#canv.create_line(665, 80, 665, 1000, width = 7) #3 вертикальная линия
-
-#canv.create_line(43, 695, 978, 695, width = 7) #3 горизонтальная линия
-
-#canv.create_line(975, 80, 975, 1000, width = 7) #4 вертикальная линия
-
-#canv.create_line(43, 1000, 978, 1000, width = 7) #4 горизонтальная линия
-
-
+canv.create_line(5, 10, 5, 740, width = 7)
+canv.create_line(250, 10, 250, 740, width = 7)
+canv.create_line(495, 10, 495, 740, width = 7)
+canv.create_line(737, 10, 737, 740, width = 7)
 
 #создание матрицы, выводящей 0 и 1 в зависимости от того, какая фигура в клетке. изначально везде будет inf
 
@@ -114,7 +125,7 @@ y = 15  # координата по оси ординат
 buttons = [] #матрица наших клеток-кнопок
 local_counter_oy = 0
 
-testcount=1 # я не знаю как это заработало, но это заработало. не трогайте, пожалуйста, эту часть кода (((вообще не трогайте!)))
+testcount=0 # я не знаю как это заработало, но это заработало. не трогайте, пожалуйста, эту часть кода (((вообще не трогайте!)))
 for i in range(9):
     local_counter_oy += 1
     local_counter_ox = 0
@@ -141,10 +152,11 @@ for i in range(9):
         testcount+=1
         x += 75
 
-        if testcount==28 or testcount==55:
+        if testcount==27 or testcount==54:
             y+=20
+
         but.config(
-            command=lambda x=x - 247, y=y + 41, i=i, j=j: playgame(x, y, i, j, testcount))  # фиксация функций клеток
+            command=lambda x=x - 247, y=y + 41, i=i, j=j,testcount=testcount: playgame(x, y, i, j, testcount))  # фиксация функций клеток
     x = 15
     y += 75
 
@@ -284,6 +296,11 @@ Label(root,text="стратегическое поле",font='Times 17').place(x
 Label(root,text="выбрать крестик",font='Times 16').place(x=1250-200,y=657)
 Label(root,text="выбрать нолик",font='Times 16').place(x=1500-200,y=657)
 
+Label(root,text="выбрать крестик",font='Times 16').place(x=1250-800,y=757)
+Label(root,text="выбрать нолик",font='Times 16').place(x=1250-1100,y=757)
+
+testbutton_k1 = Button(root, text="", background = 'red' , foreground = "red", font='Times 15', height=2,width=15, command= lambda:[test_krest()]).place(x=1250-850, y=800)
+testbutton_n1 = Button(root, text="", background = 'blue' , foreground = "blue", font='Times 15', height=2,width=15,command= lambda:[test_nul()]).place(x=1250-1100, y=800)
 
 
 root.mainloop()
