@@ -103,18 +103,36 @@ canv.create_line(1100,580,1400,580, width = 4)
 canv.create_line(1400,280,1100,280, width = 4)
 
 
-#создание разделительных линий и размещение полей 3х3 на общем поле.
+#создание разделительных линий и размещение полей 3х3 на общем поле (+ разметка).
 
 canv.create_line(0, 10, 740, 10, width = 7) #1 горизонтальная линия
 canv.create_line(0, 253, 740, 253, width = 7) #2 горизонтальная линия
 canv.create_line(0, 497, 740, 497, width = 7) #3 горизонтальная линия
 canv.create_line(0, 740, 740, 740, width = 7)#4 горизонтальная линия
 
+canv.create_line(0, 90, 740, 90, width = 3)
+canv.create_line(0, 170, 740, 170, width = 3)
+
+canv.create_line(0, 340, 740, 340, width = 3)
+canv.create_line(0, 420, 740, 420, width = 3)
+
+canv.create_line(0, 580, 740, 580, width = 3)
+canv.create_line(0, 660, 740, 660, width = 3)
+
+
 canv.create_line(5, 10, 5, 740, width = 7)
 canv.create_line(250, 10, 250, 740, width = 7)
 canv.create_line(495, 10, 495, 740, width = 7)
 canv.create_line(737, 10, 737, 740, width = 7)
 
+canv.create_line(90, 10, 90, 740, width = 3)
+canv.create_line(170, 10, 170, 740, width = 3)
+
+canv.create_line(330, 10, 330, 740, width = 3)
+canv.create_line(410, 10, 410, 740, width = 3)
+
+canv.create_line(575, 10, 575, 740, width = 3)
+canv.create_line(655, 10, 655, 740, width = 3)
 #создание матрицы, выводящей 0 и 1 в зависимости от того, какая фигура в клетке. изначально везде будет inf
 
 #создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
@@ -298,4 +316,3 @@ Label(root,text="выбрать нолик",font='Times 16').place(x=1500-200,y=
 
 
 root.mainloop()
-
