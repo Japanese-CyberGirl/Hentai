@@ -8,6 +8,50 @@ def enterMatrix(x,y):
     branch = np.zeros([(x), (y)])  # Шаблон матрицы
     for i in np.arange(0, x, 1):
         for j in np.arange(0, y, 1):
-                branch[i, j] = float('inf')
+                branch[i, j] = -1
                 counter += 1
     return branch
+
+def pobeda_ili_net(array,counter):
+    if ((array[counter] == array[counter + 1] and array[counter] == array[counter + 2] and array[counter] != -1)
+            or (array[counter + 9] == array[counter + 10] and array[counter + 9] == array[counter + 11] and array[
+                counter] != -1)
+            or (array[counter + 18] == array[counter + 19] and array[counter] == array[counter + 20] and array[
+                counter] != -1)
+
+            or (array[counter] == array[counter + 9] and array[counter] == array[counter + 18] and array[counter] != -1)
+            or (array[counter + 1] == array[counter + 10] and array[counter + 1] == array[counter + 19] and array[
+                counter] != -1)
+            or (array[counter + 2] == array[counter + 11] and array[counter + 2] == array[counter + 20] and array[
+                counter] != -1)
+
+            or (array[counter] == array[counter + 10] and array[counter] == array[counter + 20] and array[
+                counter] != -1)
+            or (array[counter + 2] == array[counter + 10] and array[counter + 2] == array[counter + 18] and array[
+                counter] != -1)):
+        return 1
+    else:
+        return 0
+
+
+binar_array = []
+for i in range(9):
+    binar_array.append(0)
+def strategic_victory_test(matrix):
+    array = []
+    for row in matrix:
+        for item in row:
+            array.append(item)
+
+    print(f"array = {array}")
+    print(f"binar_array = {binar_array}")
+    print(f"amount of array = {len(array)}")
+    add_counter=0
+    for counter in range (9):
+        print(counter)
+        print(add_counter)
+        
+        
+        add_counter+=3
+        if (counter==2 or counter==5):
+            add_counter+=18
