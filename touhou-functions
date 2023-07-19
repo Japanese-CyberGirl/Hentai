@@ -1,4 +1,8 @@
 import numpy as np
+from tkinter import *
+
+
+
 def enterMatrix(x,y):
     """
     заполение массива расстояний на основе координат
