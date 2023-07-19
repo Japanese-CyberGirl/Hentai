@@ -33,10 +33,17 @@ def pobeda_ili_net(array,counter):
     else:
         return 0
 
+def LOLICHAN(array,matrix_amounts):
+    if ((array[matrix_amounts] == array[matrix_amounts + 1] and array[matrix_amounts] == array[matrix_amounts + 2] and array[matrix_amounts] != -1)):
+        return 1
+    else:
+        return 0
 
 binar_array = []
 for i in range(9):
     binar_array.append(0)
+
+
 def strategic_victory_test(matrix):
     array = []
     for row in matrix:
@@ -45,20 +52,19 @@ def strategic_victory_test(matrix):
 
 
     print(f"amount of array = {len(array)}")
-    add_counter=0
+    matrix_amounts=0
     for counter in range (9):
         #print(f"counter = {counter}")
-        #print(f"add_counter = {add_counter}")
+        #print(f"matrix_amounts = {matrix_amounts}")
 
-        if (array[add_counter] == array[add_counter + 1] and array[add_counter] == array[add_counter + 2] and array[add_counter] != -1):
-            print(f"pobeda v pole = {counter+1}")
+        if LOLICHAN(array,matrix_amounts)==1:
             binar_array[counter]=1
 
 
 
-        add_counter+=3
+        matrix_amounts+=3
         if (counter==2 or counter==5):
-            add_counter+=18
+            matrix_amounts+=18
 
     print(f"array = {array}")
     print(f"binar_array = {binar_array}")
