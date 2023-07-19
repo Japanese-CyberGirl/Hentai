@@ -43,15 +43,22 @@ def strategic_victory_test(matrix):
         for item in row:
             array.append(item)
 
-    print(f"array = {array}")
-    print(f"binar_array = {binar_array}")
+
     print(f"amount of array = {len(array)}")
     add_counter=0
     for counter in range (9):
-        print(counter)
-        print(add_counter)
-        
-        
+        #print(f"counter = {counter}")
+        #print(f"add_counter = {add_counter}")
+
+        if (array[add_counter] == array[add_counter + 1] and array[add_counter] == array[add_counter + 2] and array[add_counter] != -1):
+            print(f"pobeda v pole = {counter+1}")
+            binar_array[counter]=1
+
+
+
         add_counter+=3
         if (counter==2 or counter==5):
             add_counter+=18
+
+    print(f"array = {array}")
+    print(f"binar_array = {binar_array}")
