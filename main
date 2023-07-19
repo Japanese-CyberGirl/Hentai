@@ -1,10 +1,11 @@
 from tkinter import *
 from touhou import enterMatrix
+from touhou import binar_array
 from touhou import strategic_victory_test
 import numpy as np
 moves_counter = 1 #создание счетчика ходов игроков
 root = Tk()
-root.geometry("1250x500")
+root.geometry("750x750")
 root.title("Крестики Нолики на максималках - БММ 2023")
 canv = Canvas(root, width=2000, height=2000, bg="white")
 
@@ -36,7 +37,9 @@ def playgame(xpos,ypos,i,j, number): #функция для кнопок - вы�
     print(f"счетчик ходов: {moves_counter}")
     buttons[i][j].destroy() #уничтожение кнопки после ее нажатия
     print(match_results)
+
     strategic_victory_test(match_results)
+    strat_pole_figures_creator(strategic_victory_test(match_results))
 
 
 def pole(xpos, ypos): # функция создания одного поля 3х3
@@ -45,6 +48,74 @@ def pole(xpos, ypos): # функция создания одного поля 3�
     canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width = 3)
     canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width = 3)
 
+
+def strat_pole_figures_creator(number):
+    global moves_counter
+    if number == 0:
+        if moves_counter%2==0:
+            canv.create_line(1105, 290, 1195, 375, width=3, fill="#e31e1e")
+            canv.create_line(1195, 290, 1105, 375, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1105, 290, 1195, 375, outline="blue", width=2)
+
+    elif number == 1:
+        if moves_counter%2==0:
+            canv.create_line(1205, 290, 1295, 375, width=3, fill="#e31e1e")
+            canv.create_line(1295, 290, 1205, 375, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1205, 290, 1295, 375, outline="blue", width=2)
+
+    elif number == 2:
+        if moves_counter%2==0:
+            canv.create_line(1305, 290, 1395, 375, width=3, fill="#e31e1e")
+            canv.create_line(1395, 290, 1305, 375, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1305, 290, 1395, 375, outline="blue", width=2)
+
+    elif number == 3:
+        if moves_counter%2==0:
+            canv.create_line(1105, 390, 1195, 475, width=3, fill="#e31e1e")
+            canv.create_line(1195, 390, 1105, 475, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1105, 390, 1195, 475, outline="blue", width=2)
+
+
+    elif number == 4:
+        if moves_counter%2==0:
+            canv.create_line(1205, 390, 1295, 475, width=3, fill="#e31e1e")
+            canv.create_line(1295, 390, 1205, 475, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1205, 390, 1295, 475, outline="blue", width=2)
+
+
+    elif number == 5:
+        if moves_counter%2==0:
+            canv.create_line(1305, 390, 1395, 475, width=3, fill="#e31e1e")
+            canv.create_line(1395, 390, 1305, 475, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1305, 390, 1395, 475, outline="blue", width=2)
+
+    elif number == 6:
+        if moves_counter%2==0:
+            canv.create_line(1105, 490, 1195, 575, width=3, fill="#e31e1e")
+            canv.create_line(1195, 490, 1105, 575, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1105, 490, 1195, 575, outline="blue", width=2)
+
+
+    elif number == 7:
+        if moves_counter%2==0:
+            canv.create_line(1205, 490, 1295, 575, width=3, fill="#e31e1e")
+            canv.create_line(1295, 490, 1205, 575, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1205, 490, 1295, 575, outline="blue", width=2)
+
+    elif number == 8:
+        if moves_counter%2==0:
+            canv.create_line(1305, 490, 1395, 575, width=3, fill="#e31e1e")
+            canv.create_line(1395, 490, 1305, 575, width=3, fill="#e31e1e")
+        else:
+            canv.create_oval(1305, 490, 1395, 575, outline="blue", width=2)
 
 #создание мини-поля стратегического положения
 
