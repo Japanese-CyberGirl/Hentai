@@ -8,41 +8,51 @@ def enterMatrix(x,y):
     branch = np.zeros([(x), (y)])  # Шаблон матрицы
     for i in np.arange(0, x, 1):
         for j in np.arange(0, y, 1):
-                branch[i, j] = -1
+                branch[i, j] = 69
                 counter += 1
     return branch
 
-def pobeda_ili_net(array,counter):
-    if ((array[counter] == array[counter + 1] and array[counter] == array[counter + 2] and array[counter] != -1)
-            or (array[counter + 9] == array[counter + 10] and array[counter + 9] == array[counter + 11] and array[
-                counter] != -1)
-            or (array[counter + 18] == array[counter + 19] and array[counter] == array[counter + 20] and array[
-                counter] != -1)
 
-            or (array[counter] == array[counter + 9] and array[counter] == array[counter + 18] and array[counter] != -1)
-            or (array[counter + 1] == array[counter + 10] and array[counter + 1] == array[counter + 19] and array[
-                counter] != -1)
-            or (array[counter + 2] == array[counter + 11] and array[counter + 2] == array[counter + 20] and array[
-                counter] != -1)
-
-            or (array[counter] == array[counter + 10] and array[counter] == array[counter + 20] and array[
-                counter] != -1)
-            or (array[counter + 2] == array[counter + 10] and array[counter + 2] == array[counter + 18] and array[
-                counter] != -1)):
+def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts):
+    if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts+9] == array[matrix_amounts + 10] == array[matrix_amounts + 11] and array[matrix_amounts+9] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts+18] == array[matrix_amounts + 19] == array[matrix_amounts + 20] and array[matrix_amounts+18] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts] == array[matrix_amounts + 9] == array[matrix_amounts + 18] and array[matrix_amounts] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts+1] == array[matrix_amounts + 10] == array[matrix_amounts + 19] and array[matrix_amounts+1] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts+2] == array[matrix_amounts + 11] == array[matrix_amounts + 20] and array[matrix_amounts+2] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts] == array[matrix_amounts + 10] == array[matrix_amounts + 20] and array[matrix_amounts] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
+        return 1
+    elif ((array[matrix_amounts+2] == array[matrix_amounts + 10] == array[matrix_amounts + 18] and array[matrix_amounts+2] != 69)):
+        if binar_array[matrix_amounts]!=1:
+            binar_array[matrix_amounts]=1
         return 1
     else:
         return 0
 
-def LOLICHAN(array,matrix_amounts):
-    if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != -1)):
-        return 1
-    else:
-        return 0
 
 binar_array = []
 for i in range(9):
     binar_array.append(0)
-
 
 def strategic_victory_test(matrix):
     array = []
@@ -50,21 +60,16 @@ def strategic_victory_test(matrix):
         for item in row:
             array.append(item)
 
-
-    print(f"amount of array = {len(array)}")
+    #print(f"amount of array = {len(array)}")
     matrix_amounts=0
     for counter in range (9):
-        #print(f"counter = {counter}")
-        #print(f"matrix_amounts = {matrix_amounts}")
 
-        if LOLICHAN(array,matrix_amounts)==1:
-            binar_array[counter]=1
-
-
+        if LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts)==1:
+            print(f"pobeda v pole = {counter}")
+            return counter
 
         matrix_amounts+=3
         if (counter==2 or counter==5):
             matrix_amounts+=18
 
-    print(f"array = {array}")
     print(f"binar_array = {binar_array}")
