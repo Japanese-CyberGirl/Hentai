@@ -34,7 +34,7 @@ def pobeda_ili_net(array,counter):
         return 0
 
 def LOLICHAN(array,matrix_amounts):
-    if ((array[matrix_amounts] == array[matrix_amounts + 1] and array[matrix_amounts] == array[matrix_amounts + 2] and array[matrix_amounts] != -1)):
+    if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != -1)):
         return 1
     else:
         return 0
