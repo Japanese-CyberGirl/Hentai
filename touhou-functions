@@ -12,47 +12,47 @@ def enterMatrix(x,y):
                 counter += 1
     return branch
 
-
-def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts):
-    if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts+9] == array[matrix_amounts + 10] == array[matrix_amounts + 11] and array[matrix_amounts+9] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts+18] == array[matrix_amounts + 19] == array[matrix_amounts + 20] and array[matrix_amounts+18] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts] == array[matrix_amounts + 9] == array[matrix_amounts + 18] and array[matrix_amounts] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts+1] == array[matrix_amounts + 10] == array[matrix_amounts + 19] and array[matrix_amounts+1] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts+2] == array[matrix_amounts + 11] == array[matrix_amounts + 20] and array[matrix_amounts+2] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts] == array[matrix_amounts + 10] == array[matrix_amounts + 20] and array[matrix_amounts] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    elif ((array[matrix_amounts+2] == array[matrix_amounts + 10] == array[matrix_amounts + 18] and array[matrix_amounts+2] != 69)):
-        if binar_array[matrix_amounts]!=1:
-            binar_array[matrix_amounts]=1
-        return 1
-    else:
-        return 0
-
-
 binar_array = []
 for i in range(9):
     binar_array.append(0)
+
+
+def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter):
+    if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts+9] == array[matrix_amounts + 10] == array[matrix_amounts + 11] and array[matrix_amounts+9] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts+18] == array[matrix_amounts + 19] == array[matrix_amounts + 20] and array[matrix_amounts+18] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts] == array[matrix_amounts + 9] == array[matrix_amounts + 18] and array[matrix_amounts] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts+1] == array[matrix_amounts + 10] == array[matrix_amounts + 19] and array[matrix_amounts+1] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts+2] == array[matrix_amounts + 11] == array[matrix_amounts + 20] and array[matrix_amounts+2] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts] == array[matrix_amounts + 10] == array[matrix_amounts + 20] and array[matrix_amounts] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    elif ((array[matrix_amounts+2] == array[matrix_amounts + 10] == array[matrix_amounts + 18] and array[matrix_amounts+2] != 69)):
+        if binar_array[counter]!=1:
+            binar_array[counter]=1
+            return 1
+    else:
+        return 0
+
 
 def strategic_victory_test(matrix):
     array = []
@@ -60,11 +60,12 @@ def strategic_victory_test(matrix):
         for item in row:
             array.append(item)
 
-    #print(f"amount of array = {len(array)}")
+
+    print(f"amount of array = {len(array)}")
     matrix_amounts=0
     for counter in range (9):
 
-        if LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts)==1:
+        if LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter)==1:
             print(f"pobeda v pole = {counter}")
             return counter
 
