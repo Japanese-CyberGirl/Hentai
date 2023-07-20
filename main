@@ -1,8 +1,10 @@
 from tkinter import *
 from touhou import enterMatrix
+from touhou import logical_victory_test
 from touhou import strategic_victory_test
 from touhou import binar_array
 import numpy as np
+import time
 
 moves_counter = 1  # создание счетчика ходов игроков
 root = Tk()
@@ -27,7 +29,6 @@ def main_start_game():
                 if buttons[i][j]!=0:
                     buttons[i][j].destroy()
 
-
     global moves_counter
     global match_results
     moves_counter=1
@@ -50,9 +51,13 @@ def main_start_game():
     turn_label.config(text="1")
     print(f"матрица обнулилась - \n {match_results}")
 
+
+
 def techical_function():
     line = canv.find_all()
     print(f"количество объектов canv = {len(line)}")
+
+
 
 def deleting():
     line = canv.find_all()
@@ -95,6 +100,16 @@ def playgame(xpos, ypos, i, j, number):  # функция для кнопок - 
     cirno = np.array(buttons)
     #print(f"buttons = {buttons}")
     #print(f"cirno leng = {cirno.size}")
+
+    if logical_victory_test(binar_array)==1:
+        if moves_counter%2!=0:
+            print(f"стратегическая победа ноликов")
+ 
+            main_start_game()
+        else:
+            print("стратегическая победа крестиков")
+
+            main_start_game()
 
 
 
