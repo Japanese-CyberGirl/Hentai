@@ -37,7 +37,7 @@ def main_start_game():
     deleting()  # удаление всех нарисованных линий
     pole() #создание разметки
     buttons_creating() #создание новых кнопок
-    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
+
     print(f"prev_match_results = {match_results}")
     match_results = enterMatrix(9,9) # очистка матрицы результатов игры, создание новых дефолтных
     binar_array.clear() #очистка бинарного массива
@@ -46,7 +46,9 @@ def main_start_game():
     print(f"last_binar_array = {binar_array}")
     techical_function()
     Hakurai_Reimu += 1
-
+    
+    Label(root, text=f"ход: ", font='Times 17').place(x=915, y=90)
+    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
 
 
 def techical_function():
@@ -83,6 +85,7 @@ def playgame(xpos, ypos, i, j, number):  # функция для кнопок - 
             canv.create_oval(xpos + 20 + 210, ypos - 20, xpos - 20 + 210, ypos + 20, outline="blue", width=2)
             match_results[i][j] = 0
     moves_counter += 1
+    turn_label.config(text=moves_counter)
     print(f"счетчик ходов: {moves_counter}")
     buttons[i][j].destroy() # уничтожение кнопки после ее нажатия
     buttons[i][j] = 0
@@ -264,8 +267,11 @@ btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=
     x=850, y=5)
 
 
-# создание надписи с разработчиками программы,
-Label(root, text=f"ход: {moves_counter}", font='Times 17').place(x=915, y=90)
+# создание надписи с разработчиками программы
+
+turn_label = Label(root, font='Times 17')
+turn_label.place(x=965, y=90)
+turn_label.config(text="1")
 
 Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=850 - 85)
 Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=885 - 85)
