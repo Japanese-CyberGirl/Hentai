@@ -47,7 +47,8 @@ def main_start_game():
 
     Label(root, text=f"ход: ", font='Times 17').place(x=915, y=90)
     Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
-
+    turn_label.config(text="1")
+    print(f"матрица обнулилась - {match_results}")
 
 def techical_function():
     line = canv.find_all()
@@ -273,7 +274,7 @@ Label(root, text="Разработчики - @cybernetic_anime_girl & Христ
 
 turn_label = Label(root, font='Times 17')
 turn_label.place(x=965, y=90)
-turn_label.config(text="1")
+
 
 canv.pack()
 root.mainloop()
