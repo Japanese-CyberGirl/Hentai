@@ -3,15 +3,50 @@ import sys
 import os
 from touhou import enterMatrix
 from touhou import strategic_victory_test
+from touhou import binar_array
 import numpy as np
 
 moves_counter = 1  # создание счетчика ходов игроков
 root = Tk()
-root.geometry("750x750")
+root.geometry("900x750")
 root.title("Крестики Нолики на максималках - БММ 2023")
 canv = Canvas(root, width=2000, height=2000, bg="white")
 
+buttons = []  # матрица наших клеток-кнопок
+# создание проверки вывода победы в стратегическое поле
+global match_results
+match_results = enterMatrix(9, 9)
 
+
+def main_start_game():
+    global hakurai_reimu
+    global moves_counter
+    global match_results
+    moves_counter=1
+    buttons.clear() #очистка массива с кнопками
+    deleting()  # удаление всех нарисованных линий
+    pole() #создание разметки
+    buttons_creating() #создание новых кнопок
+    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
+    print(f"prev_match_results = {match_results}")
+    match_results = enterMatrix(9,9) # очистка матрицы результатов игры, создание новых дефолтных
+    binar_array.clear() #очистка бинарного массива
+    for i in range(9):
+        binar_array.append(0)
+    print(f"last_binar_array = {binar_array}")
+    techical_function()
+
+
+
+
+def techical_function():
+    line = canv.find_all()
+    print(f"количество объектов canv = {len(line)}")
+
+def deleting():
+    line = canv.find_all()
+    for i in range(26, len(line)):
+        canv.delete(line[i])
 
 def playgame(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
@@ -38,17 +73,21 @@ def playgame(xpos, ypos, i, j, number):  # функция для кнопок - 
             match_results[i][j] = 0
     moves_counter += 1
     print(f"счетчик ходов: {moves_counter}")
-    buttons[i][j].destroy()  # уничтожение кнопки после ее нажатия
+    buttons[i][j].destroy() # уничтожение кнопки после ее нажатия
+    buttons[i][j] = 0
     print(match_results)
 
     # strategic_victory_test(match_results)
-
     strat_pole_figures_creator(strategic_victory_test(match_results))
+    techical_function()
+    cirno = np.array(buttons)
+    print(f"buttons = {buttons}")
+    print(f"cirno leng = {cirno.size}")
+
 
 
 def strat_pole_figures_creator(number):
     global moves_counter
-    # print(f" turn mod is {moves_counter%2}")
     print(f"strategiv_creator number = {number}")
     if number == 0:
         if moves_counter % 2 == 0:
@@ -114,66 +153,9 @@ def strat_pole_figures_creator(number):
             canv.create_oval(1305, 490, 1395, 575, outline="blue", width=2)
 
 
-def pole(xpos, ypos):  # функция создания одного поля 3х3
-    canv.create_line(xpos - 50, ypos - 150, xpos - 50, ypos + 150, width=3)
-    canv.create_line(xpos + 50, ypos - 150, xpos + 50, ypos + 150, width=3)
-    canv.create_line(xpos - 150, ypos + 50, xpos + 150, ypos + 50, width=3)
-    canv.create_line(xpos - 150, ypos - 50, xpos + 150, ypos - 50, width=3)
-
-
-# создание мини-поля стратегического положения
-
-canv.create_line(1100, 380, 1400, 380, width=3)
-canv.create_line(1100, 480, 1400, 480, width=3)
-canv.create_line(1200, 580, 1200, 280, width=3)
-canv.create_line(1300, 580, 1300, 280, width=3)
-
-canv.create_line(1400, 280, 1400, 580, width=4)
-canv.create_line(1100, 280, 1100, 580, width=4)
-canv.create_line(1100, 580, 1400, 580, width=4)
-canv.create_line(1400, 280, 1100, 280, width=4)
-
-# создание разделительных линий и размещение полей 3х3 на общем поле (+ разметка).
-
-canv.create_line(0, 10, 740, 10, width=7)  # 1 горизонтальная линия
-canv.create_line(0, 253, 740, 253, width=7)  # 2 горизонтальная линия
-canv.create_line(0, 497, 740, 497, width=7)  # 3 горизонтальная линия
-canv.create_line(0, 740, 740, 740, width=7)  # 4 горизонтальная линия
-
-canv.create_line(0, 90, 740, 90, width=3)
-canv.create_line(0, 170, 740, 170, width=3)
-
-canv.create_line(0, 340, 740, 340, width=3)
-canv.create_line(0, 420, 740, 420, width=3)
-
-canv.create_line(0, 580, 740, 580, width=3)
-canv.create_line(0, 660, 740, 660, width=3)
-
-# создание вертикальной разметки
-
-canv.create_line(5, 10, 5, 740, width=7)  # 1 вертикальная линия
-canv.create_line(250, 10, 250, 740, width=7)  # 2 вертикальная линия
-canv.create_line(495, 10, 495, 740, width=7)  # 3 вертикальная линия
-canv.create_line(737, 10, 737, 740, width=7)  # 4 вертикальная линия
-
-# мини - линии разметки
-
-canv.create_line(90, 10, 90, 740, width=3)
-canv.create_line(170, 10, 170, 740, width=3)
-
-canv.create_line(330, 10, 330, 740, width=3)
-canv.create_line(410, 10, 410, 740, width=3)
-
-canv.create_line(575, 10, 575, 740, width=3)
-canv.create_line(655, 10, 655, 740, width=3)
 # создание матрицы, выводящей 0 и 1 в зависимости от того, какая фигура в клетке. изначально везде будет inf
 
 # создание кнопок для игры. - с помощью матрицы и модуля config, фиксируя для каждой кнопки свои уникальные настройки
-
-
-buttons = []  # матрица наших клеток-кнопок
-
-
 def buttons_creating():
     testcount = 0
 
@@ -199,7 +181,6 @@ def buttons_creating():
             if (local_counter_oy == 4 or local_counter_oy == 7):
                 but.place(x=x, y=y)
 
-
             else:
                 but.place(x=x, y=y)
             buttons[i].append(but)
@@ -214,26 +195,70 @@ def buttons_creating():
                                                                                             testcount))  # фиксация функций клеток
         x = 15
         y += 75
+    print(f"buttons = {buttons}")
+    cirno = np.array(buttons)
+    print(f"cirno leng = {cirno.size}")
+
+def pole():
+    # создание мини-поля стратегического положения
+
+    canv.create_line(1100, 380, 1400, 380, width=3)
+    canv.create_line(1100, 480, 1400, 480, width=3)
+    canv.create_line(1200, 580, 1200, 280, width=3)
+    canv.create_line(1300, 580, 1300, 280, width=3)
+
+    canv.create_line(1400, 280, 1400, 580, width=4)
+    canv.create_line(1100, 280, 1100, 580, width=4)
+    canv.create_line(1100, 580, 1400, 580, width=4)
+    canv.create_line(1400, 280, 1100, 280, width=4)
+
+    # создание разделительных линий и размещение полей 3х3 на общем поле (+ разметка).
+
+    canv.create_line(0, 10, 740, 10, width=7)  # 1 горизонтальная линия
+    canv.create_line(0, 253, 740, 253, width=7)  # 2 горизонтальная линия
+    canv.create_line(0, 497, 740, 497, width=7)  # 3 горизонтальная линия
+    canv.create_line(0, 740, 740, 740, width=7)  # 4 горизонтальная линия
+
+    canv.create_line(0, 90, 740, 90, width=3)
+    canv.create_line(0, 170, 740, 170, width=3)
+
+    canv.create_line(0, 340, 740, 340, width=3)
+    canv.create_line(0, 420, 740, 420, width=3)
+
+    canv.create_line(0, 580, 740, 580, width=3)
+    canv.create_line(0, 660, 740, 660, width=3)
+
+    # создание вертикальной разметки
+
+    canv.create_line(5, 10, 5, 740, width=7)  # 1 вертикальная линия
+    canv.create_line(250, 10, 250, 740, width=7)  # 2 вертикальная линия
+    canv.create_line(495, 10, 495, 740, width=7)  # 3 вертикальная линия
+    canv.create_line(737, 10, 737, 740, width=7)  # 4 вертикальная линия
+
+    # мини - линии разметки
+
+    canv.create_line(90, 10, 90, 740, width=3)
+    canv.create_line(170, 10, 170, 740, width=3)
+
+    canv.create_line(330, 10, 330, 740, width=3)
+    canv.create_line(410, 10, 410, 740, width=3)
+
+    canv.create_line(575, 10, 575, 740, width=3)
+    canv.create_line(655, 10, 655, 740, width=3)
 
 
-buttons_creating()
-
-# создание проверки вывода победы в стратегическое поле
-match_results = enterMatrix(9, 9)
 
 # создание кнопки новой игры
-btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2, width=15).place(
-    x=1150, y=5)
+btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2, width=15, command=main_start_game).place(
+    x=850, y=5)
 
-canv.pack()
 
-# command = lambda:[A_K(NUL_OR_KREST),A.destroy()])
 # создание надписи с разработчиками программы,
 Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=850 - 85)
 Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=885 - 85)
 Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=955 - 85)
 Label(root, text="Разработчики - @cybernetic_anime_girl & Христос", font='Times 17').place(x=1209 - 200, y=920 - 85)
 
-Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)
 
+canv.pack()
 root.mainloop()
