@@ -181,7 +181,7 @@ def buttons_creating():
         buttons.append([])
         for j in range(9):
             local_counter_ox += 1
-            but = Button(root, text=testcount, background='white', foreground="white", font='Times 8', height=5,
+            but = Button(root, text="", background='white', foreground="white", font='Times 8', height=5,
                          width=11, relief='solid')
             # написать размещение
 
@@ -265,6 +265,8 @@ btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=
 
 
 # создание надписи с разработчиками программы,
+Label(root, text=f"ход: {moves_counter}", font='Times 17').place(x=915, y=90)
+
 Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=850 - 85)
 Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=885 - 85)
 Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=955 - 85)
