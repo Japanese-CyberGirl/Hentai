@@ -17,9 +17,19 @@ buttons = []  # матрица наших клеток-кнопок
 global match_results
 match_results = enterMatrix(9, 9)
 
+global Hakurai_Reimu
+Hakurai_Reimu = 0
 
 def main_start_game():
-    global hakurai_reimu
+    global Hakurai_Reimu
+    print(f"Hakurai Reimu = {Hakurai_Reimu}")
+    if Hakurai_Reimu>=1:
+        for i in range(9):
+            for j in range(9):
+                if buttons[i][j]!=0:
+                    buttons[i][j].destroy()
+
+
     global moves_counter
     global match_results
     moves_counter=1
@@ -35,7 +45,7 @@ def main_start_game():
         binar_array.append(0)
     print(f"last_binar_array = {binar_array}")
     techical_function()
-
+    Hakurai_Reimu += 1
 
 
 
@@ -47,6 +57,7 @@ def deleting():
     line = canv.find_all()
     for i in range(26, len(line)):
         canv.delete(line[i])
+
 
 def playgame(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
