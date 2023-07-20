@@ -24,42 +24,66 @@ def enterMatrix(x,y):
 def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter):
     if ((array[matrix_amounts] == array[matrix_amounts + 1] == array[matrix_amounts + 2] and array[matrix_amounts] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts+9] == array[matrix_amounts + 10] == array[matrix_amounts + 11] and array[matrix_amounts+9] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts+9]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts+18] == array[matrix_amounts + 19] == array[matrix_amounts + 20] and array[matrix_amounts+18] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts+18]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts] == array[matrix_amounts + 9] == array[matrix_amounts + 18] and array[matrix_amounts] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts+1] == array[matrix_amounts + 10] == array[matrix_amounts + 19] and array[matrix_amounts+1] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts+1]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts+2] == array[matrix_amounts + 11] == array[matrix_amounts + 20] and array[matrix_amounts+2] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts+2]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts] == array[matrix_amounts + 10] == array[matrix_amounts + 20] and array[matrix_amounts] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     elif ((array[matrix_amounts+2] == array[matrix_amounts + 10] == array[matrix_amounts + 18] and array[matrix_amounts+2] != 69)):
         if binar_array[counter]==69:
-            binar_array[counter]=1
+            if array[matrix_amounts]==1:
+                binar_array[counter]=1
+            else:
+                binar_array[counter]=0
             return 1
 
     else:
