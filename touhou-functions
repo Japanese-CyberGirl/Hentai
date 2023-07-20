@@ -111,3 +111,24 @@ def strategic_victory_test(matrix):
             matrix_amounts+=18
 
     print(f"binar_array = {binar_array}")
+
+
+def logical_victory_test(array):
+    if array[0]==array[1]==array[2] and array[0]!=69:
+        return 1
+    elif array[3]==array[4]==array[5] and array[3]!=69:
+        return 1
+    elif array[6]==array[7]==array[8] and array[6]!=69:
+        return 1
+    elif array[0]==array[3]==array[6] and array[0]!=69:
+        return 1
+    elif array[1]==array[4]==array[7] and array[1]!=69:
+        return 1
+    elif array[2]==array[5]==array[8] and array[2]!=69:
+        return 1
+    elif array[0]==array[4]==array[8] and array[0]!=69:
+        return 1
+    elif array[2]==array[4]==array[6] and array[2]!=69:
+        return 1
+    else:
+        return 0
