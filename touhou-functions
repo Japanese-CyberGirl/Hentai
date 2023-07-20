@@ -1,6 +1,7 @@
 import numpy as np
 from tkinter import *
 
+binar_array = []
 
 
 def enterMatrix(x,y):
@@ -8,6 +9,7 @@ def enterMatrix(x,y):
     заполение массива расстояний на основе координат
     :return:
     """
+
     counter = 0
     branch = np.zeros([(x), (y)])  # Шаблон матрицы
     for i in np.arange(0, x, 1):
@@ -16,9 +18,7 @@ def enterMatrix(x,y):
                 counter += 1
     return branch
 
-binar_array = []
-for i in range(9):
-    binar_array.append(0)
+
 
 
 def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter):
@@ -71,6 +71,7 @@ def strategic_victory_test(matrix):
 
         if LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter)==1:
             print(f"pobeda v pole = {counter}")
+            print(f"binar_array = {binar_array}")
             return counter
 
         matrix_amounts+=3
