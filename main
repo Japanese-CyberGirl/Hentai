@@ -5,6 +5,7 @@ from touhou import strategic_victory_test
 from touhou import binar_array
 import numpy as np
 import time
+import time
 
 moves_counter = 1  # создание счетчика ходов игроков
 root = Tk()
@@ -36,7 +37,8 @@ def main_start_game():
     deleting()  # удаление всех нарисованных линий
     pole() #создание разметки
     buttons_creating() #создание новых кнопок
-    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
+
+    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)
     print(f"prev_match_results = {match_results}")
     match_results = enterMatrix(9,9) # очистка матрицы результатов игры, создание новых дефолтных
     binar_array.clear() #очистка бинарного массива
@@ -53,6 +55,9 @@ def main_start_game():
 
 
 
+
+
+
 def techical_function():
     line = canv.find_all()
     print(f"количество объектов canv = {len(line)}")
@@ -65,7 +70,7 @@ def deleting():
         canv.delete(line[i])
 
 
-def playgame(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
+def button_click(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
@@ -104,12 +109,15 @@ def playgame(xpos, ypos, i, j, number):  # функция для кнопок - 
     if logical_victory_test(binar_array)==1:
         if moves_counter%2!=0:
             print(f"стратегическая победа ноликов")
- 
-            main_start_game()
+            output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
+            output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
+
+
+
         else:
             print("стратегическая победа крестиков")
-
-            main_start_game()
+            output_k=Label(root, text="стратегическая победа крестиков", font='Times 80').place(x=150, y=90)
+            output_k1=Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
 
 
 
@@ -197,7 +205,7 @@ def buttons_creating():
         buttons.append([])
         for j in range(9):
             local_counter_ox += 1
-            but = Button(root, text="", background='white', foreground="white", font='Times 8', height=5,
+            but = Button(root, text=testcount, background='white', foreground="white", font='Times 8', height=5,
                          width=11, relief='solid')
             # написать размещение
 
@@ -218,8 +226,8 @@ def buttons_creating():
                 y += 20
 
             but.config(
-                command=lambda x=x - 247, y=y + 41, i=i, j=j, testcount=testcount: playgame(x, y, i, j,
-                                                                                            testcount))  # фиксация функций клеток
+                command=lambda x=x - 247, y=y + 41, i=i, j=j, testcount=testcount: button_click(x, y, i, j,
+                                                                                                testcount))  # фиксация функций клеток
         x = 15
         y += 75
     print(f"buttons = {buttons}")
