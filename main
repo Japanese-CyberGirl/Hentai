@@ -6,7 +6,7 @@ from touhou import binar_array
 import numpy as np
 import time
 import time
-# кто я?
+
 moves_counter = 1  # создание счетчика ходов игроков
 root = Tk()
 root.geometry("900x750")
