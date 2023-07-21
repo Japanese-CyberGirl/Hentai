@@ -385,6 +385,14 @@ def test_enable():
                 buttons[i][j].config(state=NORMAL)
 
 
+def all_the_buttons_disable():
+    for i in range(9):
+        for j in range(9):
+            if buttons[i][j] != 0:
+                buttons[i][j].config(state=DISABLED)
+
+
+
 testb = Button(root, text="тестовый запуск кнопок", font='Times 16', height=2, width=18, command=test_enable).place(
     x=1200, y=5)
 
