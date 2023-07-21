@@ -21,27 +21,28 @@ match_results = enterMatrix(9, 9)
 global Hakurai_Reimu
 Hakurai_Reimu = 0
 
+
 def main_start_game():
     global Hakurai_Reimu
     print(f"Hakurai Reimu = {Hakurai_Reimu}")
-    if Hakurai_Reimu>=1:
+    if Hakurai_Reimu >= 1:
         for i in range(9):
             for j in range(9):
-                if buttons[i][j]!=0:
+                if buttons[i][j] != 0:
                     buttons[i][j].destroy()
 
     global moves_counter
     global match_results
-    moves_counter=1
-    buttons.clear() #очистка массива с кнопками
+    moves_counter = 1
+    buttons.clear()  # очистка массива с кнопками
     deleting()  # удаление всех нарисованных линий
-    pole() #создание разметки
-    buttons_creating() #создание новых кнопок
+    pole()  # создание разметки
+    buttons_creating()  # создание новых кнопок
 
     Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)
     print(f"prev_match_results = {match_results}")
-    match_results = enterMatrix(9,9) # очистка матрицы результатов игры, создание новых дефолтных
-    binar_array.clear() #очистка бинарного массива
+    match_results = enterMatrix(9, 9)  # очистка матрицы результатов игры, создание новых дефолтных
+    binar_array.clear()  # очистка бинарного массива
     for i in range(9):
         binar_array.append(69)
     print(f"last_binar_array = {binar_array}")
@@ -49,16 +50,15 @@ def main_start_game():
     Hakurai_Reimu += 1
 
     Label(root, text=f"ход: ", font='Times 17').place(x=915, y=90)
-    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237) #
+    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)  #
     turn_label.config(text="1")
     print(f"матрица обнулилась - \n {match_results}")
-
-
 
 
 def techical_function():
     line = canv.find_all()
     print(f"количество объектов canv = {len(line)}")
+
 
 def game_logic_unclicking(number):
     for i in range(9):
@@ -66,13 +66,15 @@ def game_logic_unclicking(number):
             if buttons[i][j] != 0:
                 buttons[i][j].config(state=DISABLED)
 
-    A_field = ['0' , '3' ,'6' ,'27', '30', '33', '54', '57', '60']
-
-    if any(x in str(number) for x in A_field)==1:
-        for i in range(0,3):
-            for j in range(0,3):
-                if buttons[i][j]!=0:
+    A_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
+    test_numb = number - 1
+    if test_numb == 0 or test_numb == 3 or test_numb == 6 or test_numb == 27 or test_numb == 30 or test_numb == 33 or \
+            test_numb == 54 or test_numb == 57 or test_numb == 60:
+        for i in range(0, 3):
+            for j in range(0, 3):
+                if buttons[i][j] != 0:
                     buttons[i][j].config(state=NORMAL)
+
 
 def deleting():
     line = canv.find_all()
@@ -105,7 +107,7 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
             match_results[i][j] = 0
     moves_counter += 1
     print(f"счетчик ходов: {moves_counter}")
-    buttons[i][j].destroy() # уничтожение кнопки после ее нажатия
+    buttons[i][j].destroy()  # уничтожение кнопки после ее нажатия
     buttons[i][j] = 0
     print(match_results)
     turn_label.config(text=moves_counter)
@@ -114,28 +116,23 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
 
     game_logic_unclicking(number)
 
+    # techical_function()
+    # cirno = np.array(buttons)
+    # print(f"buttons = {buttons}")
+    # print(f"cirno leng = {cirno.size}")
 
-
-    #techical_function()
-    #cirno = np.array(buttons)
-    #print(f"buttons = {buttons}")
-    #print(f"cirno leng = {cirno.size}")
-
-
-
-    if logical_victory_test(binar_array)==1:
-        if moves_counter%2!=0:
+    if logical_victory_test(binar_array) == 1:
+        if moves_counter % 2 != 0:
             print(f"стратегическая победа ноликов")
-            #output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
-            #output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
+            # output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
+            # output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
 
 
 
         else:
             print("стратегическая победа крестиков")
-            #output_k=Label(root, text="стратегическая победа крестиков", font='Times 80').place(x=150, y=90)
-            #output_k1=Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
-
+            # output_k=Label(root, text="стратегическая победа крестиков", font='Times 80').place(x=150, y=90)
+            # output_k1=Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
 
 
 def strat_pole_figures_creator(number):
@@ -248,10 +245,10 @@ def buttons_creating():
         x = 15
         y += 75
 
-
     print(f"buttons = {buttons}")
     cirno = np.array(buttons)
     print(f"cirno leng = {cirno.size}")
+
 
 def pole():
     # создание мини-поля стратегического положения
@@ -301,20 +298,20 @@ def pole():
     canv.create_line(655, 10, 655, 740, width=3)
 
 
-
 # создание кнопки новой игры
 btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2, width=15, command=main_start_game).place(
     x=850, y=5)
 
+
 def test_enable():
     for i in range(9):
         for j in range(9):
-            if buttons[i][j]!=0:
-                buttons[i][j].config(state = NORMAL)
+            if buttons[i][j] != 0:
+                buttons[i][j].config(state=NORMAL)
+
 
 testb = Button(root, text="тестовый запуск кнопок", font='Times 16', height=2, width=18, command=test_enable).place(
     x=1200, y=5)
-
 
 # создание надписи с разработчиками программы,
 Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=750 - 85)
@@ -325,7 +322,6 @@ Label(root, text="Разработчики - @cybernetic_anime_girl & Христ
 
 turn_label = Label(root, font='Times 17')
 turn_label.place(x=965, y=90)
-
 
 canv.pack()
 root.mainloop()
