@@ -66,7 +66,7 @@ def game_logic_unclicking(number):
             if buttons[i][j] != 0:
                 buttons[i][j].config(state=DISABLED)
 
-    A_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
+    #A_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
     test_numb = number - 1
     if test_numb == 0 or test_numb == 3 or test_numb == 6 or test_numb == 27 or test_numb == 30 or test_numb == 33 or \
             test_numb == 54 or test_numb == 57 or test_numb == 60:
@@ -74,6 +74,64 @@ def game_logic_unclicking(number):
             for j in range(0, 3):
                 if buttons[i][j] != 0:
                     buttons[i][j].config(state=NORMAL)
+
+    #B_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
+    if test_numb == 1 or test_numb == 4 or test_numb == 7 or test_numb == 28 or test_numb == 31 or test_numb == 34 or \
+            test_numb == 55 or test_numb == 58 or test_numb == 61:
+        for i in range(0, 3):
+            for j in range(3, 6):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 2 or test_numb == 5 or test_numb == 8 or test_numb == 29 or test_numb == 32 or test_numb == 35 or \
+            test_numb == 56 or test_numb == 59 or test_numb == 62:
+        for i in range(0, 3):
+            for j in range(6, 9):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 9 or test_numb == 12 or test_numb == 15 or test_numb == 36 or test_numb == 39 or test_numb == 42 or \
+            test_numb == 63 or test_numb == 66 or test_numb == 69:
+        for i in range(3, 6):
+            for j in range(0, 3):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 9+1 or test_numb == 12+1 or test_numb == 15+1 or test_numb == 36+1 or test_numb == 39+1 or test_numb == 42+1 or \
+            test_numb == 63+1 or test_numb == 66+1 or test_numb == 69+1:
+        for i in range(3, 6):
+            for j in range(3, 6):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 9+2 or test_numb == 12+2 or test_numb == 15+2 or test_numb == 36+2 or test_numb == 39+2 or test_numb == 42+2 or \
+            test_numb == 63+2 or test_numb == 66+2 or test_numb == 69+2:
+        for i in range(3, 6):
+            for j in range(6, 9):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 18 or test_numb == 21 or test_numb == 24 or test_numb == 45 or test_numb == 48  or test_numb == 51 or \
+            test_numb == 72 or test_numb == 75  or test_numb == 78:
+        for i in range(6, 9):
+            for j in range(0, 3):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 18+1 or test_numb == 21+1 or test_numb == 24+1 or test_numb == 45+1 or test_numb == 48+1  or test_numb == 51+1 or \
+            test_numb == 72+1 or test_numb == 75+1  or test_numb == 78+1:
+        for i in range(6, 9):
+            for j in range(3, 6):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
+    if test_numb == 18+2 or test_numb == 21+2 or test_numb == 24+2 or test_numb == 45+2 or test_numb == 48+2  or test_numb == 51+2 or \
+            test_numb == 72+2 or test_numb == 75+2  or test_numb == 78+2:
+        for i in range(6, 9):
+            for j in range(6, 9):
+                if buttons[i][j] != 0:
+                    buttons[i][j].config(state=NORMAL)
+
 
 
 def deleting():
