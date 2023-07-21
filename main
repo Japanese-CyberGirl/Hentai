@@ -107,7 +107,7 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     #print(f"cirno leng = {cirno.size}")
 
     if logical_victory_test(binar_array)==1:
-        if moves_counter%2!=0:
+        if moves_counter%2!=1:
             print(f"стратегическая победа ноликов")
             output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
             output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
