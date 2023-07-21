@@ -78,9 +78,10 @@ def LOLICHAN_POBEDA_STRAT_POLYA(array,matrix_amounts,counter):
                 binar_array[counter]=0
             return 1
 
+
     elif ((array[matrix_amounts+2] == array[matrix_amounts + 10] == array[matrix_amounts + 18] and array[matrix_amounts+2] != 69)):
         if binar_array[counter]==69:
-            if array[matrix_amounts]==1:
+            if array[matrix_amounts+2]==1:
                 binar_array[counter]=1
             else:
                 binar_array[counter]=0
@@ -111,6 +112,7 @@ def strategic_victory_test(matrix):
             matrix_amounts+=18
 
     print(f"binar_array = {binar_array}")
+
 
 
 def logical_victory_test(array):
