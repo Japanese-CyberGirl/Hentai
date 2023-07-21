@@ -56,13 +56,23 @@ def main_start_game():
 
 
 
-
-
 def techical_function():
     line = canv.find_all()
     print(f"количество объектов canv = {len(line)}")
 
+def game_logic_unclicking(number):
+    for i in range(9):
+        for j in range(9):
+            if buttons[i][j] != 0:
+                buttons[i][j].config(state=DISABLED)
 
+    A_field = ['0' , '3' ,'6' ,'27', '30', '33', '54', '57', '60']
+
+    if any(x in str(number) for x in A_field)==1:
+        for i in range(0,3):
+            for j in range(0,3):
+                if buttons[i][j]!=0:
+                    buttons[i][j].config(state=NORMAL)
 
 def deleting():
     line = canv.find_all()
@@ -101,23 +111,30 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     turn_label.config(text=moves_counter)
     # strategic_victory_test(match_results)
     strat_pole_figures_creator(strategic_victory_test(match_results))
-    techical_function()
-    cirno = np.array(buttons)
+
+    game_logic_unclicking(number)
+
+
+
+    #techical_function()
+    #cirno = np.array(buttons)
     #print(f"buttons = {buttons}")
     #print(f"cirno leng = {cirno.size}")
+
+
 
     if logical_victory_test(binar_array)==1:
         if moves_counter%2!=0:
             print(f"стратегическая победа ноликов")
-            output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
-            output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
+            #output_n = Label(root, text="стратегическая победа ноликов", font='Times 80').place(x=150, y=90)
+            #output_n1 = Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
 
 
 
         else:
             print("стратегическая победа крестиков")
-            output_k=Label(root, text="стратегическая победа крестиков", font='Times 80').place(x=150, y=90)
-            output_k1=Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
+            #output_k=Label(root, text="стратегическая победа крестиков", font='Times 80').place(x=150, y=90)
+            #output_k1=Label(root, text="для продолжения, нажмите <Новая Игра>", font='Times 60').place(x=200, y=590)
 
 
 
@@ -230,6 +247,8 @@ def buttons_creating():
                                                                                                 testcount))  # фиксация функций клеток
         x = 15
         y += 75
+
+
     print(f"buttons = {buttons}")
     cirno = np.array(buttons)
     print(f"cirno leng = {cirno.size}")
@@ -287,12 +306,21 @@ def pole():
 btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2, width=15, command=main_start_game).place(
     x=850, y=5)
 
+def test_enable():
+    for i in range(9):
+        for j in range(9):
+            if buttons[i][j]!=0:
+                buttons[i][j].config(state = NORMAL)
+
+testb = Button(root, text="тестовый запуск кнопок", font='Times 16', height=2, width=18, command=test_enable).place(
+    x=1200, y=5)
+
 
 # создание надписи с разработчиками программы,
-Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=850 - 85)
-Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=885 - 85)
-Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=955 - 85)
-Label(root, text="Разработчики - @cybernetic_anime_girl & Христос", font='Times 17').place(x=1209 - 200, y=920 - 85)
+Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=750 - 85)
+Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=785 - 85)
+Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=855 - 85)
+Label(root, text="Разработчики - @cybernetic_anime_girl & Христос", font='Times 17').place(x=1209 - 200, y=820 - 85)
 # создание надписи с разработчиками программы
 
 turn_label = Label(root, font='Times 17')
