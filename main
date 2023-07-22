@@ -207,6 +207,7 @@ def game_logic_unclicking(number):
                         buttons[i][j].config(state=NORMAL)
 
 
+
 def krest_victory():
     children = Toplevel(root)
     children.title("Результаты игры")
@@ -235,6 +236,7 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     global moves_counter
     global AI_null_point
     global AI_krest_point
+
 
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
@@ -402,6 +404,7 @@ def buttons_creating():
     print(f"cirno leng = {cirno.size}")
 
 
+
 def pole():
     # создание мини-поля стратегического положения
 
@@ -521,14 +524,16 @@ def AI_side_button():
     AI_null_button.pack()
 
 #проврека, можно ли включить в игру ИИ на данный момент
+
     if moves_counter == 0:
         AI_krest_button.configure(state=DISABLED)
         AI_null_button.configure(state=DISABLED)
-    if moves_counter == 1:
+    if moves_counter%2==1:
         AI_null_button.configure(state=DISABLED)
-    if AI_krest_point>=1 or AI_null_point>=1:
+
+    if moves_counter%2==0:
         AI_krest_button.configure(state=DISABLED)
-        AI_null_button.configure(state=DISABLED)
+
 
 
 def AI_krestik(matrix):
@@ -577,6 +582,7 @@ def AI_nolik(matrix):
     next_AI_turn = random.choice(AI_array)
     print(f"AI_turn is {next_AI_turn}")
     next_AI_turn.invoke()
+
 
 
 testb = Button(root, text="правила игры", font='Times 16', height=2, width=18,
