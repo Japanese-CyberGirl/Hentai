@@ -227,13 +227,13 @@ def nolik_victory():
                           font='Times 30').place(x=100, y=100)
 
 
-#def unvictory_victory():
- #   children = Toplevel(root)
-  #  children.title("Результаты игры")
-   # children.geometry("1500x500")
-    #results_label = Label(children, text="Ни один из игроков не смог достигнуть стратегической победы.\n \n \n \n"
-     #                                    "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе",
-      #                    font='Times 30').place(x=100, y=100)
+def unvictory_victory():
+    children = Toplevel(root)
+    children.title("Результаты игры")
+    children.geometry("1500x500")
+    results_label = Label(children, text="Ни один из игроков не смог достигнуть стратегической победы.\n \n \n \n"
+                                         "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе",
+                          font='Times 30').place(x=100, y=100)
 
 def deleting():
     line = canv.find_all()
@@ -300,8 +300,8 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
             krest_victory()
             unvictory = 1
 
-    #if unvictory == 0:
-       # unvictory_victory()
+    if unvictory == 0 and moves_counter==81:
+        unvictory_victory()
 
 
 
