@@ -8,7 +8,7 @@ import numpy as np
 import time
 import time
 
-moves_counter = 1  # создание счетчика ходов игроков
+moves_counter = 0  # создание счетчика ходов игроков
 root = Tk()
 root.geometry("900x750")
 root.title("Крестики Нолики на максималках - БММ 2023")
@@ -30,6 +30,8 @@ AI_null_point = 0
 
 
 def main_start_game():
+    global AI_null_point
+    global AI_krest_point
     global Hakurai_Reimu
     print(f"Hakurai Reimu = {Hakurai_Reimu}")
     if Hakurai_Reimu >= 1:
@@ -55,6 +57,8 @@ def main_start_game():
     print(f"last_binar_array = {binar_array}")
     techical_function()
     Hakurai_Reimu += 1
+    AI_null_point = 0
+    AI_krest_point = 0
 
     Label(root, text=f"ход: ", font='Times 17').place(x=1055, y=33)
     Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)  #
@@ -176,7 +180,7 @@ def game_logic_unclicking(number):
 
     if test_numb == 18 + 1 or test_numb == 21 + 1 or test_numb == 24 + 1 or test_numb == 45 + 1 or test_numb == 48 + 1 or test_numb == 51 + 1 or \
             test_numb == 72 + 1 or test_numb == 75 + 1 or test_numb == 78 + 1:
-        if match_results[6, 3] != 69 and match_results[7, 4]  != 69 and match_results[8, 5] != 69 and match_results[
+        if match_results[6, 3] != 69 and match_results[7, 4] != 69 and match_results[8, 5] != 69 and match_results[
             6, 3] != 69 and \
                 match_results[7, 4] != 69 and match_results[8, 5] != 69 and match_results[6, 3] != 69 and match_results[
             7, 4] != 69 \
@@ -203,22 +207,22 @@ def game_logic_unclicking(number):
                         buttons[i][j].config(state=NORMAL)
 
 
-
-
 def krest_victory():
     children = Toplevel(root)
     children.title("Результаты игры")
     children.geometry("1500x500")
     results_label = Label(children, text="Игрок за крестиков добился стратегической победы.\n \n \n \n"
-                                         "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе", font='Times 30').place(x=100,y=100)
+                                         "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе",
+                          font='Times 30').place(x=100, y=100)
+
 
 def nolik_victory():
     children = Toplevel(root)
     children.title("Результаты игры")
     children.geometry("1500x500")
     results_label = Label(children, text="Игрок за ноликов добился стратегической победы.\n \n \n \n"
-                                         "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе", font='Times 30').place(x=100,y=100)
-
+                                         "Для новой игры, пожалуйста, нажмите <Новая Игра> в основной программе",
+                          font='Times 30').place(x=100, y=100)
 
 
 def deleting():
@@ -227,12 +231,10 @@ def deleting():
         canv.delete(line[i])
 
 
-
 def button_click(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
     global AI_null_point
     global AI_krest_point
-    
 
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
@@ -369,7 +371,7 @@ def buttons_creating():
         buttons.append([])
         for j in range(9):
             local_counter_ox += 1
-            but = Button(root, text=testcount+1, background='white', foreground="white", font='Times 8', height=5,
+            but = Button(root, text=testcount + 1, background='white', foreground="white", font='Times 8', height=5,
                          width=11, relief='solid')
             # написать размещение
 
@@ -466,69 +468,82 @@ def all_the_buttons_disable():
             if buttons[i][j] != 0:
                 buttons[i][j].config(state=DISABLED)
 
+
 def annotation_button():
     children = Toplevel(root)
     children.title("Правила игры")
     children.geometry("1800x800")
-    annotation_label = Label(children, text="Игра крестики нолики на максималках происходит в доске 3х3, которая состоит из полей 3х3 которые в свою очередь состоят из 9 клеток. \n \n"
-                                         "У каждого поля есть свой номер (от 1 до 81) \n \n"
-                                         "Механика игры: \n \n"
-                                         "Первый ход  \n"
-                                         "Крестики делают ход в любое поле и любую клетку. \n"
-                                         "Нолик уже имеет ограничение - расположение поля ( в которое  должен будет сходить нолик ) на общей доске должно  соответствовать расположению клетки \n"
-                                            "в которую сходил предыдущий игрок в его локальном поле \n \n"
-                                         "После первого хода такое ограничение будет присутствовать всю игру для крестиков и ноликов (за исключением пункта **)\n \n"
-                                         "То есть каждый игрок своим ходом выбирает поле, в которое должен будет сходить его оппонент \n "
-                                         "\n \n \n ** в случае если вам необходимо сходить в поле без свободных клеток ,  вы можете выбрать любую свободную клетку на доске \n \n"
-                                         "\n \n Победа: \n \n"
-                                         "Когда в поле один из игроков собирает 3 своих фигуры  в ряд на одном из полей, это поле помечается его фигурой. \n \n "
-                                            "Игра на поле может продолжиться, но поле останется за игроком останется до конца матча.  \n \n"
-                                         "Побеждает тот кто первый ( на стратегической доске ) соберёт ряд из 3 полей своей фигуры",
-                          font='Times 20').place(x=15, y=100)
+    annotation_label = Label(children,
+                             text="Игра крестики нолики на максималках происходит в доске 3х3, которая состоит из полей 3х3 которые в свою очередь состоят из 9 клеток. \n \n"
+                                  "У каждого поля есть свой номер (от 1 до 81) \n \n"
+                                  "Механика игры: \n \n"
+                                  "Первый ход  \n"
+                                  "Крестики делают ход в любое поле и любую клетку. \n"
+                                  "Нолик уже имеет ограничение - расположение поля ( в которое  должен будет сходить нолик ) на общей доске должно  соответствовать расположению клетки \n"
+                                  "в которую сходил предыдущий игрок в его локальном поле \n \n"
+                                  "После первого хода такое ограничение будет присутствовать всю игру для крестиков и ноликов (за исключением пункта **)\n \n"
+                                  "То есть каждый игрок своим ходом выбирает поле, в которое должен будет сходить его оппонент \n "
+                                  "\n \n \n ** в случае если вам необходимо сходить в поле без свободных клеток ,  вы можете выбрать любую свободную клетку на доске \n \n"
+                                  "\n \n Победа: \n \n"
+                                  "Когда в поле один из игроков собирает 3 своих фигуры  в ряд на одном из полей, это поле помечается его фигурой. \n \n "
+                                  "Игра на поле может продолжиться, но поле останется за игроком останется до конца матча.  \n \n"
+                                  "Побеждает тот кто первый ( на стратегической доске ) соберёт ряд из 3 полей своей фигуры",
+                             font='Times 20').place(x=15, y=100)
 
 
 def AI_side_button():
     children = Toplevel(root)
     children.title("Игра с ИИ")
     children.geometry("650x300")
-    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=30,y=140)
+    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=30, y=140)
     global Hakurai_Reimu
 
-    AI_krest_button = Button(children,text = "ИИ за крестиков (Х)", font='Times 16', height=2, width=16,relief='solid', \
-                             command = lambda:[AI_krestik(buttons), \
-                                               Label(children, text = "Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
-                                                                      "Главный разрабочик - @Cybernetic_Anime_Girl ", font = 'Times 16').place(x=90, y =200), \
-                                               AI_krest_button.configure(state=DISABLED), AI_null_button.configure(state=DISABLED)])
+    AI_krest_button = Button(children, text="ИИ за крестиков (Х)", font='Times 16', height=2, width=16, relief='solid', \
+                             command=lambda: [AI_krestik(buttons), \
+                                              Label(children,
+                                                    text="Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
+                                                         "Главный разрабочик - @Cybernetic_Anime_Girl ",
+                                                    font='Times 16').place(x=90, y=200), \
+                                              AI_krest_button.configure(state=DISABLED),
+                                              AI_null_button.configure(state=DISABLED)])
+
+
 
     AI_null_button = Button(children, text="ИИ за ноликов (О)", font='Times 16', height=2, width=16, relief='solid', \
-                            command = lambda:[AI_nolik(buttons) , \
-                                               Label(children, text = "Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
-                                                                      "Главный разрабочик - @Cybernetic_Anime_Girl " , font = 'Times 16').place(x=90, y =200), \
-                                              AI_krest_button.configure(state=DISABLED), AI_null_button.configure(state=DISABLED)])
+                            command=lambda: [AI_nolik(buttons), \
+                                             Label(children,
+                                                   text="Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
+                                                        "Главный разрабочик - @Cybernetic_Anime_Girl ",
+                                                   font='Times 16').place(x=90, y=200), \
+                                             AI_krest_button.configure(state=DISABLED),
+                                             AI_null_button.configure(state=DISABLED)])
     AI_krest_button.pack()
     AI_null_button.pack()
 
-    if Hakurai_Reimu==0:
-        AI_krest_button.configure(state = DISABLED)
-        AI_null_button.configure(state = DISABLED)
-    else:
-        AI_krest_button.configure(state = NORMAL)
-        AI_null_button.configure(state = NORMAL)
+#проврека, можно ли включить в игру ИИ на данный момент
+    if moves_counter == 0:
+        AI_krest_button.configure(state=DISABLED)
+        AI_null_button.configure(state=DISABLED)
+    if moves_counter == 1:
+        AI_null_button.configure(state=DISABLED)
+    if AI_krest_point>=1 or AI_null_point>=1:
+        AI_krest_button.configure(state=DISABLED)
+        AI_null_button.configure(state=DISABLED)
+
 
 def AI_krestik(matrix):
     global AI_krest_point
     AI_krest_point += 1
-    krest_output=Label(root, text = "ИИ за крестиков (X)", font='Times 17').place(x=857, y=165)
 
-    AI_array=[]
-    array=[]
+    AI_array = []
+    array = []
     for row in matrix:
         for item in row:
             array.append(item)
 
     for i in range(81):
-        if array[i]!=0:
-            if array[i]["state"]==NORMAL:
+        if array[i] != 0:
+            if array[i]["state"] == NORMAL:
                 tec = array[i]
                 print(f"i = {i}")
                 print(f"array[i] = {array[i]}")
@@ -543,17 +558,16 @@ def AI_krestik(matrix):
 def AI_nolik(matrix):
     global AI_null_point
     AI_null_point += 1
-    nolik_output=Label(root, text = "ИИ за ноликов (O)", font='Times 17').place(x=857, y=165)
 
-    AI_array=[]
-    array=[]
+    AI_array = []
+    array = []
     for row in matrix:
         for item in row:
             array.append(item)
 
     for i in range(81):
-        if array[i]!=0:
-            if array[i]["state"]==NORMAL:
+        if array[i] != 0:
+            if array[i]["state"] == NORMAL:
                 tec = array[i]
                 print(f"i = {i}")
                 print(f"array[i] = {array[i]}")
@@ -565,19 +579,17 @@ def AI_nolik(matrix):
     next_AI_turn.invoke()
 
 
+testb = Button(root, text="правила игры", font='Times 16', height=2, width=18,
+               command=lambda: annotation_button()).place(x=1200, y=5)
 
-
-
-
-testb = Button(root, text="правила игры", font='Times 16', height=2, width=18, command=lambda:annotation_button()).place(x=1200, y=5)
-
-AI_game = Button(root, text = "играть с ИИ", font='Times 16', height=2, width=15, command = lambda: AI_side_button()).place(x=850, y=95)
+AI_game = Button(root, text="играть с ИИ", font='Times 16', height=2, width=15, command=lambda: AI_side_button()).place(
+    x=850, y=95)
 
 # создание надписи с разработчиками программы
-Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=750 - 85)
-Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=785 - 85)
-Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=855 - 85)
-Label(root, text="Разработчики - @cybernetic_anime_girl & Христос", font='Times 17').place(x=1209 - 200, y=820 - 85)
+Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=750 - 155)
+Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=785 - 155)
+Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=855 - 155)
+Label(root, text="Разработчики - @cybernetic_anime_girl & Христос", font='Times 17').place(x=1209 - 200, y=820 - 155)
 # создание надписи с разработчиками программы
 
 turn_label = Label(root, font='Times 17')
