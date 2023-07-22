@@ -482,13 +482,32 @@ def AI_side_button():
     children.geometry("650x150")
     Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=15,y=15)
     AI_krest_button = Button(children,text = "ИИ за крестиков (Х)", font='Times 16', height=2, width=16,relief='solid', \
-                             command = lambda:[AI_krestik()]).place(x=90,y=77)
+                             command = lambda:[AI_krestik(buttons)]).place(x=90,y=77)
 
     AI_null_button = Button(children, text="ИИ за ноликов (О)", font='Times 16', height=2, width=16, relief='solid', \
                             command = lambda:[AI_nolik(buttons)]).place(x=340, y=77)
 
-def AI_krestik():
+def AI_krestik(matrix):
     krest_output=Label(root, text = "ИИ за крестиков (X)", font='Times 17').place(x=857, y=165)
+
+    AI_array=[]
+    array=[]
+    for row in matrix:
+        for item in row:
+            array.append(item)
+
+    for i in range(81):
+        if array[i]!=0:
+            if array[i]["state"]==NORMAL:
+                tec = array[i]
+                print(f"i = {i}")
+                print(f"array[i] = {array[i]}")
+                AI_array.append(tec)
+
+    print(f"AI_array = {AI_array}")
+    next_AI_turn = random.choice(AI_array)
+    print(f"AI_turn is {next_AI_turn}")
+    next_AI_turn.invoke()
 
 
 def AI_nolik(matrix):
