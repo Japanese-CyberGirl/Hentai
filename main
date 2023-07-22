@@ -1,4 +1,5 @@
 from tkinter import *
+import random
 from touhou import enterMatrix
 from touhou import logical_victory_test
 from touhou import strategic_victory_test
@@ -49,7 +50,7 @@ def main_start_game():
     techical_function()
     Hakurai_Reimu += 1
 
-    Label(root, text=f"ход: ", font='Times 17').place(x=915, y=90)
+    Label(root, text=f"ход: ", font='Times 17').place(x=1055, y=33)
     Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)  #
     turn_label.config(text="1")
     print(f"матрица обнулилась - \n {match_results}")
@@ -475,13 +476,53 @@ def annotation_button():
                                          "Побеждает тот кто первый ( на стратегической доске ) соберёт ряд из 3 полей своей фигуры",
                           font='Times 20').place(x=15, y=100)
 
+def AI_side_button():
+    children = Toplevel(root)
+    children.title("Игра с ИИ")
+    children.geometry("650x150")
+    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=15,y=15)
+    AI_krest_button = Button(children,text = "ИИ за крестиков (Х)", font='Times 16', height=2, width=16,relief='solid', \
+                             command = lambda:[AI_krestik()]).place(x=90,y=77)
+
+    AI_null_button = Button(children, text="ИИ за ноликов (О)", font='Times 16', height=2, width=16, relief='solid', \
+                            command = lambda:[AI_nolik(buttons)]).place(x=340, y=77)
+
+def AI_krestik():
+    krest_output=Label(root, text = "ИИ за крестиков (X)", font='Times 17').place(x=857, y=165)
+
+
+def AI_nolik(matrix):
+    nolik_output=Label(root, text = "ИИ за ноликов (O)", font='Times 17').place(x=857, y=165)
+
+    AI_array=[]
+    array=[]
+    for row in matrix:
+        for item in row:
+            array.append(item)
+
+    for i in range(81):
+        if array[i]!=0:
+            if array[i]["state"]==NORMAL:
+                tec = array[i]
+                print(f"i = {i}")
+                print(f"array[i] = {array[i]}")
+                AI_array.append(tec)
+
+    print(f"AI_array = {AI_array}")
+    next_AI_turn = random.choice(AI_array)
+    print(f"AI_turn is {next_AI_turn}")
+    next_AI_turn.invoke()
 
 
 
-testb = Button(root, text="правила игры", font='Times 16', height=2, width=18, command=lambda:annotation_button()).place(
-    x=1200, y=5)
 
-# создание надписи с разработчиками программы,
+
+
+testb = Button(root, text="правила игры", font='Times 16', height=2, width=18, command=lambda:annotation_button()).place(x=1200, y=5)
+
+AI_game = Button(root, text = "играть с ИИ", font='Times 16', height=2, width=15, command = lambda: AI_side_button()).place(x=850, y=95)
+
+# создание надписи с разработчиками программы
 Label(root, text="Большая Математическая Мастерская 2023", font='Times 17').place(x=1209 - 200, y=750 - 85)
 Label(root, text="''Крестики-Нолики на максималках''", font='Times 17').place(x=1209 - 200, y=785 - 85)
 Label(root, text="г. Новосибирск, 2023", font='Times 17').place(x=1209 - 200, y=855 - 85)
@@ -489,7 +530,7 @@ Label(root, text="Разработчики - @cybernetic_anime_girl & Христ
 # создание надписи с разработчиками программы
 
 turn_label = Label(root, font='Times 17')
-turn_label.place(x=965, y=90)
+turn_label.place(x=1105, y=33)
 
 canv.pack()
 root.mainloop()
