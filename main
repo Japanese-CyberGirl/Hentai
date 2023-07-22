@@ -22,6 +22,12 @@ match_results = enterMatrix(9, 9)
 global Hakurai_Reimu
 Hakurai_Reimu = 0
 
+global AI_krest_point
+AI_krest_point = 0
+
+global AI_null_point
+AI_null_point = 0
+
 
 def main_start_game():
     global Hakurai_Reimu
@@ -224,6 +230,10 @@ def deleting():
 
 def button_click(xpos, ypos, i, j, number):  # функция для кнопок - вывод крестика/нолика в зависимости от хода
     global moves_counter
+    global AI_null_point
+    global AI_krest_point
+    
+
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
         if number == 27 or number == 54:  # а это костыль =)
@@ -476,18 +486,38 @@ def annotation_button():
                                          "Побеждает тот кто первый ( на стратегической доске ) соберёт ряд из 3 полей своей фигуры",
                           font='Times 20').place(x=15, y=100)
 
+
 def AI_side_button():
     children = Toplevel(root)
     children.title("Игра с ИИ")
-    children.geometry("650x150")
-    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=15,y=15)
+    children.geometry("650x300")
+    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=30,y=140)
+    global Hakurai_Reimu
+
     AI_krest_button = Button(children,text = "ИИ за крестиков (Х)", font='Times 16', height=2, width=16,relief='solid', \
-                             command = lambda:[AI_krestik(buttons)]).place(x=90,y=77)
+                             command = lambda:[AI_krestik(buttons), \
+                                               Label(children, text = "Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
+                                                                      "Главный разрабочик - @Cybernetic_Anime_Girl ", font = 'Times 16').place(x=90, y =200), \
+                                               AI_krest_button.configure(state=DISABLED), AI_null_button.configure(state=DISABLED)])
 
     AI_null_button = Button(children, text="ИИ за ноликов (О)", font='Times 16', height=2, width=16, relief='solid', \
-                            command = lambda:[AI_nolik(buttons)]).place(x=340, y=77)
+                            command = lambda:[AI_nolik(buttons) , \
+                                               Label(children, text = "Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
+                                                                      "Главный разрабочик - @Cybernetic_Anime_Girl " , font = 'Times 16').place(x=90, y =200), \
+                                              AI_krest_button.configure(state=DISABLED), AI_null_button.configure(state=DISABLED)])
+    AI_krest_button.pack()
+    AI_null_button.pack()
+
+    if Hakurai_Reimu==0:
+        AI_krest_button.configure(state = DISABLED)
+        AI_null_button.configure(state = DISABLED)
+    else:
+        AI_krest_button.configure(state = NORMAL)
+        AI_null_button.configure(state = NORMAL)
 
 def AI_krestik(matrix):
+    global AI_krest_point
+    AI_krest_point += 1
     krest_output=Label(root, text = "ИИ за крестиков (X)", font='Times 17').place(x=857, y=165)
 
     AI_array=[]
@@ -511,6 +541,8 @@ def AI_krestik(matrix):
 
 
 def AI_nolik(matrix):
+    global AI_null_point
+    AI_null_point += 1
     nolik_output=Label(root, text = "ИИ за ноликов (O)", font='Times 17').place(x=857, y=165)
 
     AI_array=[]
