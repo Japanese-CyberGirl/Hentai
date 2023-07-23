@@ -629,7 +629,7 @@ AI_game = Button(root, text="играть с ИИ", font='Times 16', height=2, w
 
 # создание надписи с разработчиками программы
 Label(root, text="«Крестики-Нолики на максималках»\nг. Новосибирск, 2023\nРазработчики:\n@cybernetic_anime_girl "
-                 "& @terysol & @Hristos_0 ").place(relx=.98, rely=.80, anchor='se')
+                 "& @terysol & @Hristos_0 ").place(relx=.99, rely=.95, anchor='se')
 
 turn_label = Label(root, font='Times 17')
 turn_label.place(x=1105, y=33)
