@@ -31,7 +31,7 @@ unvictory = 0
 
 
 global AI_turn
-AI_turn = False
+AI_turn = True
 
 def main_start_game():
     global AI_null_point
@@ -308,10 +308,13 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     if unvictory == 0 and moves_counter == 81:
         unvictory_victory()
 
-    while moves_counter%2 == 0 and AI_krest_point > 0 and logical_victory_test(binar_array) != 1 and AI_turn == False:
+    while moves_counter%2 == 1 and AI_krest_point > 0 and logical_victory_test(binar_array) != 1 and AI_turn == False:
         AI_krestik(buttons)
         AI_turn = not AI_turn
 
+    while moves_counter%2 == 0 and AI_null_point > 0 and logical_victory_test(binar_array) != 1 and AI_turn == True:
+        AI_nolik(buttons)
+        AI_turn = not AI_turn
 
 def strat_pole_figures_creator(number):
     global moves_counter
@@ -592,6 +595,7 @@ def AI_krestik(matrix):
 
 def AI_nolik(matrix):
     global AI_null_point
+    global AI_turn
     AI_null_point += 1
 
     AI_array = []
@@ -611,6 +615,7 @@ def AI_nolik(matrix):
     print(f"AI_array = {AI_array}")
     next_AI_turn = random.choice(AI_array)
     print(f"AI_turn is {next_AI_turn}")
+    AI_turn = not AI_turn
     next_AI_turn.invoke()
 
 
