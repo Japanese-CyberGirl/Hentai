@@ -17,6 +17,8 @@ buttons = []  # матрица наших клеток-кнопок
 global match_results
 match_results = enterMatrix(9, 9) #матрица с теккущими результатами игры на поле
 
+button_font = tkinter.font.Font(weight='bold', family='comic sans ms', size=16)
+
 global Hakurai_Reimu
 Hakurai_Reimu = 0
 
@@ -53,7 +55,7 @@ def main_start_game():
     pole()  # создание разметки
     buttons_creating()  # создание новых кнопок
 
-    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)
+    Label(root, text="Стратегическое поле", font=button_font).place(x=1350 - 210, y=237)
     print(f"prev_match_results = {match_results}")
     match_results = enterMatrix(9, 9)  # очистка матрицы результатов игры, создание новых дефолтных
     binar_array.clear()  # очистка бинарного массива
@@ -65,9 +67,9 @@ def main_start_game():
     AI_null_point = 0
     AI_krest_point = 0
 
-    Label(root, text=f"ход: ", font='Times 17').place(x=1055, y=33)
-    Label(root, text="стратегическое поле", font='Times 17').place(x=1350 - 210, y=237)  #
-    turn_label.config(text="1")
+    Label(root, text=f"ход: ", font=button_font).place(x=1055, y=33)
+    Label(root, text="Стратегическое поле", font=button_font).place(x=1350 - 210, y=237)  #
+    turn_label.config(text=f"{moves_counter}", font=button_font)
     print(f"матрица обнулилась - \n {match_results}")
 
 
@@ -278,7 +280,7 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     buttons[i][j].destroy()  # уничтожение кнопки после ее нажатия
     buttons[i][j] = 0
     print(match_results)
-    turn_label.config(text=moves_counter)
+    turn_label.config(text=f'{moves_counter}', font=button_font)
     # strategic_victory_test(match_results)
     strat_pole_figures_creator(strategic_victory_test(match_results))
 
@@ -481,7 +483,7 @@ def pole():
 
 
 # создание кнопки новой игры
-btn_new_game = Button(root, text="Новая Игра", font='Times 16', height=2, width=15, command=main_start_game).place(
+btn_new_game = Button(root, text="Новая игра", font=button_font, height=2, width=15, command=main_start_game).place(
     x=850, y=5)
 
 
@@ -621,10 +623,10 @@ def AI_nolik(matrix):
     next_AI_turn.invoke()
 
 
-testb = Button(root, text="правила игры", font='Times 16', height=2, width=18,
+testb = Button(root, text="Правила игры", font=button_font, height=2, width=18,
                command=lambda: annotation_button()).place(x=1200, y=5)
 
-AI_game = Button(root, text="играть с ИИ", font='Times 16', height=2, width=15, command=lambda: AI_side_button()).place(
+AI_game = Button(root, text="Играть с ИИ", font=button_font, height=2, width=15, command=lambda: AI_side_button()).place(
     x=850, y=95)
 
 # создание надписи с разработчиками программы
