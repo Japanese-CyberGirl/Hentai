@@ -529,8 +529,8 @@ def AI_side_button():
     children = Toplevel(root)
     children.title("Игра с ИИ")
     children.geometry("650x300")
-    Label(children, text="Пожалуйста, выберите, за кого будет играть ИИ?", font='Times 20').place(x=30, y=140)
     global Hakurai_Reimu
+    Label(children, text="\n\n\nПожалуйста, выберите, за кого будет играть ИИ", font='Times 20').pack()
 
     AI_krest_button = Button(children, text="ИИ за крестиков (Х)", font='Times 16', height=2, width=16, relief='solid', \
                              command=lambda: [AI_krestik(buttons), \
@@ -551,6 +551,7 @@ def AI_side_button():
                                              AI_null_button.configure(state=DISABLED)])
     AI_krest_button.pack()
     AI_null_button.pack()
+
 
     # проврека, можно ли включить в игру ИИ на данный момент
 
