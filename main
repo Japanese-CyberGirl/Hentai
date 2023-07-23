@@ -30,6 +30,9 @@ global unvictory
 unvictory = 0
 
 
+global AI_turn
+AI_turn = False
+
 def main_start_game():
     global AI_null_point
     global AI_krest_point
@@ -246,6 +249,7 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     global unvictory
     global AI_null_point
     global AI_krest_point
+    global AI_turn
 
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
@@ -279,6 +283,8 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
 
     game_logic_unclicking(number)
 
+    AI_turn = not AI_turn
+    print(f"AI_turn = {AI_turn}")
     # techical_function()
     # cirno = np.array(buttons)
     # print(f"buttons = {buttons}")
@@ -292,7 +298,6 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
             nolik_victory()
             unvictory = 1
 
-
         else:
             print("стратегическая победа крестиков")
 
@@ -302,6 +307,10 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
 
     if unvictory == 0 and moves_counter == 81:
         unvictory_victory()
+
+    while moves_counter%2 == 0 and AI_krest_point > 0 and logical_victory_test(binar_array) != 1 and AI_turn == False:
+        AI_krestik(buttons)
+        AI_turn = not AI_turn
 
 
 def strat_pole_figures_creator(number):
@@ -554,6 +563,7 @@ def AI_side_button():
 
 
 def AI_krestik(matrix):
+    global AI_turn
     global AI_krest_point
     AI_krest_point += 1
 
@@ -571,9 +581,12 @@ def AI_krestik(matrix):
                 print(f"array[i] = {array[i]}")
                 AI_array.append(tec)
 
+
     print(f"AI_array = {AI_array}")
     next_AI_turn = random.choice(AI_array)
     print(f"AI_turn is {next_AI_turn}")
+    global AI_turn
+    AI_turn = not AI_turn
     next_AI_turn.invoke()
 
 
