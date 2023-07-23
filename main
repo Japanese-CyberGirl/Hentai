@@ -17,7 +17,7 @@ buttons = []  # матрица наших клеток-кнопок
 global match_results
 match_results = enterMatrix(9, 9) #матрица с теккущими результатами игры на поле
 
-button_font = tkinter.font.Font(weight='bold', family='comic sans ms', size=14)
+button_font = tkinter.font.Font(weight='bold', family='comic sans ms', size=13)
 
 global Hakurai_Reimu
 Hakurai_Reimu = 0
