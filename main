@@ -37,6 +37,24 @@ AI_turn = True  # суть работы схожа с проверкой на ч
 
 # таким образом поддеживается устойчивая работа
 
+
+def DEBUGGING(matrix):
+    TEST_array = []
+    mini_test_array = []
+    for row in matrix:
+        for item in row:
+            mini_test_array.append(item)
+    print(f"доступные для игрока клетки для посещения")
+    for i in range(81):
+        if mini_test_array[i] != 0:
+            if mini_test_array[i]["state"] == NORMAL:
+                tec = mini_test_array[i]
+                print(f"i = {i}")
+                print(f"array[i] = {mini_test_array[i]}")
+                print(f"доступные кнопки = {tec}")
+                TEST_array.append(tec)
+
+
 def main_start_game():
     global AI_turn
     global AI_null_point
@@ -87,16 +105,15 @@ def game_logic_unclicking(number):
         for j in range(9):
             if buttons[i][j] != 0:
                 buttons[i][j].config(state=DISABLED)
+    print('все кнопки заблокированы')
 
     # A_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
     test_numb = number - 1
-    if test_numb == 0 or test_numb == 3 or test_numb == 6 or test_numb == 27 or test_numb == 30 or test_numb == 33 or \
-            test_numb == 54 or test_numb == 57 or test_numb == 60:
-        if match_results[0, 0] != 69 and match_results[0, 1] != 69 and match_results[0, 2] != 69 and match_results[
-            1, 0] != 69 and \
-                match_results[1, 1] != 69 and match_results[1, 2] != 69 and match_results[2, 0] != 69 and match_results[
-            2, 1] != 69 \
-                and match_results[2, 2] != 69:
+    if test_numb == 0 or test_numb == 3 or test_numb == 6 or test_numb == 27 or test_numb == 30 or \
+            test_numb == 33 or test_numb == 54 or test_numb == 57 or test_numb == 60:
+        if match_results[0, 0] != 69 and match_results[0, 1] != 69 and match_results[0, 2] != 69 and \
+                match_results[1, 0] != 69 and match_results[1, 1] != 69 and match_results[1, 2] != 69 and \
+                match_results[2, 0] != 69 and match_results[2, 1] != 69 and match_results[2, 2] != 69:
             test_enable()
         else:
             for i in range(0, 3):  # поле 1
@@ -105,13 +122,11 @@ def game_logic_unclicking(number):
                         buttons[i][j].config(state=NORMAL)
 
     # B_field = ['0', '3', '6', '27', '30', '33', '54', '57', '60']
-    if test_numb == 1 or test_numb == 4 or test_numb == 7 or test_numb == 28 or test_numb == 31 or test_numb == 34 or \
-            test_numb == 55 or test_numb == 58 or test_numb == 61:
-        if match_results[0, 3] != 69 and match_results[0, 4] != 69 and match_results[0, 5] != 69 and match_results[
-            1, 3] != 69 and \
-                match_results[1, 4] != 69 and match_results[1, 5] != 69 and match_results[2, 3] != 69 and match_results[
-            2, 4] != 69 \
-                and match_results[2, 5] != 69:
+    elif test_numb == 1 or test_numb == 4 or test_numb == 7 or test_numb == 28 or test_numb == 31 or \
+            test_numb == 34 or test_numb == 55 or test_numb == 58 or test_numb == 61:
+        if match_results[0, 3] != 69 and match_results[0, 4] != 69 and match_results[0, 5] != 69 and \
+                match_results[1, 3] != 69 and match_results[1, 4] != 69 and match_results[1, 5] != 69 and \
+                match_results[2, 3] != 69 and match_results[2, 4] != 69 and match_results[2, 5] != 69:
             test_enable()
         else:
             for i in range(0, 3):  # поле 2
@@ -119,13 +134,11 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 2 or test_numb == 5 or test_numb == 8 or test_numb == 29 or test_numb == 32 or test_numb == 35 or \
-            test_numb == 56 or test_numb == 59 or test_numb == 62:
-        if match_results[0, 6] != 69 and match_results[0, 7] != 69 and match_results[0, 8] != 69 and match_results[
-            1, 6] != 69 and \
-                match_results[1, 7] != 69 and match_results[1, 8] != 69 and match_results[2, 6] != 69 and match_results[
-            2, 7] != 69 \
-                and match_results[2, 8] != 69:
+    elif test_numb == 2 or test_numb == 5 or test_numb == 8 or test_numb == 29 or test_numb == 32 or \
+            test_numb == 35 or test_numb == 56 or test_numb == 59 or test_numb == 62:
+        if match_results[0, 6] != 69 and match_results[0, 7] != 69 and match_results[0, 8] != 69 and \
+                match_results[1, 6] != 69 and match_results[1, 7] != 69 and match_results[1, 8] != 69 and\
+                match_results[2, 6] != 69 and match_results[2, 7] != 69 and match_results[2, 8] != 69:
             test_enable()
         else:
             for i in range(0, 3):  # поле 3
@@ -133,13 +146,11 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 9 or test_numb == 12 or test_numb == 15 or test_numb == 36 or test_numb == 39 or test_numb == 42 or \
-            test_numb == 63 or test_numb == 66 or test_numb == 69:
-        if match_results[3, 0] != 69 and match_results[3, 1] != 69 and match_results[3, 2] != 69 and match_results[
-            4, 0] != 69 and \
-                match_results[4, 1] != 69 and match_results[4, 2] != 69 and match_results[5, 0] != 69 and match_results[
-            5, 1] != 69 \
-                and match_results[5, 2] != 69:
+    elif test_numb == 9 or test_numb == 12 or test_numb == 15 or test_numb == 36 or test_numb == 39 or \
+            test_numb == 42 or test_numb == 63 or test_numb == 66 or test_numb == 69:
+        if match_results[3, 0] != 69 and match_results[3, 1] != 69 and match_results[3, 2] != 69 and \
+                match_results[4, 0] != 69 and match_results[4, 1] != 69 and match_results[4, 2] != 69 and \
+                match_results[5, 0] != 69 and match_results[5, 1] != 69 and match_results[5, 2] != 69:
             test_enable()
         else:
             for i in range(3, 6):  # поле 4
@@ -147,13 +158,12 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 9 + 1 or test_numb == 12 + 1 or test_numb == 15 + 1 or test_numb == 36 + 1 or test_numb == 39 + 1 or test_numb == 42 + 1 or \
-            test_numb == 63 + 1 or test_numb == 66 + 1 or test_numb == 69 + 1:
-        if match_results[3, 3] != 69 and match_results[3, 4] != 69 and match_results[3, 5] != 69 and match_results[
-            4, 3] != 69 and \
-                match_results[4, 4] != 69 and match_results[4, 5] != 69 and match_results[5, 3] != 69 and match_results[
-            5, 4] != 69 \
-                and match_results[5, 5] != 69:
+    elif test_numb == 9 + 1 or test_numb == 12 + 1 or test_numb == 15 + 1 or test_numb == (36 + 1) or \
+            test_numb == 39 + 1 or test_numb == 42 + 1 or test_numb == 63 + 1 or test_numb == 66 + 1 or \
+            test_numb == 69 + 1:
+        if match_results[3, 3] != 69 and match_results[3, 4] != 69 and match_results[3, 5] != 69 and \
+                match_results[4, 3] != 69 and match_results[4, 4] != 69 and match_results[4, 5] != 69 and\
+                match_results[5, 3] != 69 and match_results[5, 4] != 69 and match_results[5, 5] != 69:
             test_enable()
         else:
             for i in range(3, 6):  # поле 5
@@ -161,13 +171,12 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 9 + 2 or test_numb == 12 + 2 or test_numb == 15 + 2 or test_numb == 36 + 2 or test_numb == 39 + 2 or test_numb == 42 + 2 or \
-            test_numb == 63 + 2 or test_numb == 66 + 2 or test_numb == 69 + 2:
-        if match_results[3, 6] != 69 and match_results[3, 7] != 69 and match_results[3, 8] != 69 and match_results[
-            4, 6] != 69 and \
-                match_results[4, 7] != 69 and match_results[4, 8] != 69 and match_results[5, 6] != 69 and match_results[
-            5, 7] != 69 \
-                and match_results[5, 8] != 69:
+    elif test_numb == 9 + 2 or test_numb == 12 + 2 or test_numb == 15 + 2 or test_numb == 36 + 2 or \
+            test_numb == 39 + 2 or test_numb == 42 + 2 or test_numb == 63 + 2 or test_numb == 66 + 2 or \
+            test_numb == 69 + 2:
+        if match_results[3, 6] != 69 and match_results[3, 7] != 69 and match_results[3, 8] != 69 and \
+                match_results[4, 6] != 69 and match_results[4, 7] != 69 and match_results[4, 8] != 69 and\
+                match_results[5, 6] != 69 and match_results[5, 7] != 69 and match_results[5, 8] != 69:
             test_enable()
         else:
             for i in range(3, 6):  # поле 6
@@ -175,13 +184,11 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 18 or test_numb == 21 or test_numb == 24 or test_numb == 45 or test_numb == 48 or test_numb == 51 or \
-            test_numb == 72 or test_numb == 75 or test_numb == 78:
-        if match_results[0, 6] != 69 and match_results[1, 7] != 69 and match_results[2, 8] != 69 and match_results[
-            0, 6] != 69 and \
-                match_results[1, 7] != 69 and match_results[2, 8] != 69 and match_results[0, 6] != 69 and match_results[
-            1, 7] != 69 \
-                and match_results[2, 8] != 69:
+    elif test_numb == 18 or test_numb == 21 or test_numb == 24 or test_numb == 45 or test_numb == 48 or \
+            test_numb == 51 or test_numb == 72 or test_numb == 75 or test_numb == 78:
+        if match_results[6, 0] != 69 and match_results[6, 1] != 69 and match_results[6, 2] != 69 and \
+                match_results[7, 0] != 69 and match_results[7, 1] != 69 and match_results[7, 2] != 69 and\
+                match_results[8, 0] != 69 and match_results[8, 1] != 69 and match_results[8, 2] != 69:
             test_enable()
         else:
             for i in range(6, 9):  # поле 7
@@ -189,13 +196,12 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 18 + 1 or test_numb == 21 + 1 or test_numb == 24 + 1 or test_numb == 45 + 1 or test_numb == 48 + 1 or test_numb == 51 + 1 or \
-            test_numb == 72 + 1 or test_numb == 75 + 1 or test_numb == 78 + 1:
-        if match_results[6, 3] != 69 and match_results[7, 4] != 69 and match_results[8, 5] != 69 and match_results[
-            6, 3] != 69 and \
-                match_results[7, 4] != 69 and match_results[8, 5] != 69 and match_results[6, 3] != 69 and match_results[
-            7, 4] != 69 \
-                and match_results[8, 5] != 69:
+    elif test_numb == 18 + 1 or test_numb == 21 + 1 or test_numb == 24 + 1 or test_numb == 45 + 1 or \
+            test_numb == 48 + 1 or test_numb == 51 + 1 or test_numb == 72 + 1 or test_numb == 75 + 1 or \
+            test_numb == 78 + 1:
+        if match_results[6, 3] != 69 and match_results[6, 4] != 69 and match_results[6, 5] != 69 and\
+                match_results[7, 3] != 69 and match_results[7, 4] != 69 and match_results[7, 5] != 69 and\
+                match_results[8, 3] != 69 and match_results[8, 4] != 69 and match_results[8, 5] != 69:
             test_enable()
         else:
             for i in range(6, 9):  # поле 8
@@ -203,13 +209,12 @@ def game_logic_unclicking(number):
                     if buttons[i][j] != 0:
                         buttons[i][j].config(state=NORMAL)
 
-    if test_numb == 18 + 2 or test_numb == 21 + 2 or test_numb == 24 + 2 or test_numb == 45 + 2 or test_numb == 48 + 2 or test_numb == 51 + 2 or \
-            test_numb == 72 + 2 or test_numb == 75 + 2 or test_numb == 78 + 2:
-        if match_results[6, 6] != 69 and match_results[7, 7] != 69 and match_results[8, 8] != 69 and match_results[
-            6, 6] != 69 and \
-                match_results[7, 7] != 69 and match_results[8, 8] != 69 and match_results[6, 6] != 69 and match_results[
-            7, 7] != 69 \
-                and match_results[8, 8] != 69:
+    elif test_numb == 18 + 2 or test_numb == 21 + 2 or test_numb == 24 + 2 or test_numb == 45 + 2 or \
+            test_numb == 48 + 2 or test_numb == 51 + 2 or test_numb == 72 + 2 or test_numb == 75 + 2 or \
+            test_numb == 78 + 2:
+        if match_results[6, 6] != 69 and match_results[6, 7] != 69 and match_results[6, 8] != 69 and\
+                match_results[7, 6] != 69 and match_results[7, 7] != 69 and match_results[7, 8] != 69 and\
+                match_results[8, 6] != 69 and match_results[8, 7] != 69 and match_results[8, 8] != 69:
             test_enable()
         else:
             for i in range(6, 9):  # поле 9
@@ -276,6 +281,8 @@ def button_click(xpos, ypos, i, j, number):  # функция для кнопо�
     global AI_null_point
     global AI_krest_point
     global AI_turn
+
+    DEBUGGING(buttons)
 
     if moves_counter % 2 == 1:
         print(f"номер  = {number}")
@@ -427,7 +434,7 @@ def buttons_creating():
         buttons.append([])
         for j in range(9):
             local_counter_ox += 1
-            but = Button(root, text="十", background='white', foreground="white", font='Times 8', height=5,
+            but = Button(root, text=testcount, background='white', foreground="white", font='Times 8', height=5,
                          width=11, relief='solid')
             # написать размещение
 
@@ -517,6 +524,7 @@ def test_enable():
         for j in range(9):
             if buttons[i][j] != 0:
                 buttons[i][j].config(state=NORMAL)
+    print('все кнопки разлочены')
 
 
 def all_the_buttons_disable():
@@ -609,8 +617,8 @@ def AI_krestik(matrix):
         if array[i] != 0:
             if array[i]["state"] == NORMAL:
                 tec = array[i]
-                #print(f"i = {i}")
-                #print(f"array[i] = {array[i]}")
+                print(f"i = {i}")
+                print(f"array[i] = {array[i]}")
                 print(f"доступные кнопки = {tec}")
                 AI_array.append(tec)
 
@@ -620,6 +628,7 @@ def AI_krestik(matrix):
     global AI_turn
     AI_turn = not AI_turn  # лгическая функция меняет свое значение
     next_AI_turn.invoke()
+    DEBUGGING(buttons)
 
 
 def AI_nolik(matrix):
@@ -639,6 +648,7 @@ def AI_nolik(matrix):
                 tec = array[i]
                 print(f"i = {i}")
                 print(f"array[i] = {array[i]}")
+                print(f"доступные кнопки = {tec}")
                 AI_array.append(tec)
 
     print(f"AI_array = {AI_array}")
@@ -646,13 +656,14 @@ def AI_nolik(matrix):
     print(f"AI_turn is {next_AI_turn}")
     AI_turn = not AI_turn
     next_AI_turn.invoke()
+    DEBUGGING(buttons)
 
 
 testb = Button(root, text="Правила игры", font=button_font, height=2, width=18,
                command=lambda: annotation_button()).place(x=1200, y=5)
 
-#testetest = Button(root, text="victory test", font=button_font, height=2, width=18,
-        #           command=lambda: krest_victory()).place(x=1200, y=50)
+# testetest = Button(root, text="victory test", font=button_font, height=2, width=18,
+#           command=lambda: krest_victory()).place(x=1200, y=50)
 
 AI_game = Button(root, text="Играть с ИИ", font=button_font, height=2, width=15,
                  command=lambda: AI_side_button()).place(
