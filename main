@@ -15,7 +15,7 @@ canv = Canvas(root, width=root.winfo_screenwidth(), height=root.winfo_screenheig
 buttons = []  # матрица наших клеток-кнопок
 # создание проверки вывода победы в стратегическое поле
 global match_results
-match_results = enterMatrix(9, 9)
+match_results = enterMatrix(9, 9) #матрица с теккущими результатами игры на поле
 
 global Hakurai_Reimu
 Hakurai_Reimu = 0
@@ -30,8 +30,9 @@ global unvictory
 unvictory = 0
 
 
-global AI_turn
-AI_turn = True
+global AI_turn #супер-важная переменная, использующаяся для работы условного ИИ.
+AI_turn = True #суть работы схожа с проверкой на четность - нечетность ходов. дальше по коду, после хода ИИ это переменная меняет свое значение, аналогично как и после хода игрока
+#таким образом поддеживается устойчивая работа
 
 def main_start_game():
     global AI_null_point
@@ -400,11 +401,11 @@ def buttons_creating():
         buttons.append([])
         for j in range(9):
             local_counter_ox += 1
-            but = Button(root, text=testcount + 1, background='white', foreground="white", font='Times 8', height=5,
+            but = Button(root, text="十", background='white', foreground="white", font='Times 8', height=5,
                          width=11, relief='solid')
             # написать размещение
 
-            if (local_counter_ox == 4 or local_counter_ox == 7):
+            if (local_counter_ox == 4 or local_counter_ox == 7): #работа над разметкой, чтобы между полями 3х3 были расстояния
                 but.place(x=x + 20, y=y)
                 x += 20
 
@@ -565,6 +566,10 @@ def AI_side_button():
         AI_krest_button.configure(state=DISABLED)
 
 
+
+#условный ИИ работает следующим образом: функция принимает матрицу с нашими кнопками
+#затем эти кнопки загоняются в массив, в котором проходят проверку, если кнопка способна к нажатию - ее добавляют в массив AI
+#после добавления в массив ИИ, через random выбирается кнопка, которую нажмет ИИ (используя метод invoke())
 def AI_krestik(matrix):
     global AI_turn
     global AI_krest_point
@@ -589,7 +594,7 @@ def AI_krestik(matrix):
     next_AI_turn = random.choice(AI_array)
     print(f"AI_turn is {next_AI_turn}")
     global AI_turn
-    AI_turn = not AI_turn
+    AI_turn = not AI_turn #лгическая функция меняет свое значение
     next_AI_turn.invoke()
 
 
