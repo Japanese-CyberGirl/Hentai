@@ -647,8 +647,8 @@ def AI_nolik(matrix):
 testb = Button(root, text="Правила игры", font=button_font, height=2, width=18,
                command=lambda: annotation_button()).place(x=1200, y=5)
 
-testetest = Button(root, text="victory test", font=button_font, height=2, width=18,
-                   command=lambda: krest_victory()).place(x=1200, y=50)
+#testetest = Button(root, text="victory test", font=button_font, height=2, width=18,
+        #           command=lambda: krest_victory()).place(x=1200, y=50)
 
 AI_game = Button(root, text="Играть с ИИ", font=button_font, height=2, width=15,
                  command=lambda: AI_side_button()).place(
