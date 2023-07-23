@@ -537,7 +537,7 @@ def AI_side_button():
                                               Label(children,
                                                     text="Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
                                                          "Главный разрабочик - @Cybernetic_Anime_Girl ",
-                                                    font='Times 16').place(x=90, y=200), \
+                                                    font='Times 16').pack(), \
                                               AI_krest_button.configure(state=DISABLED),
                                               AI_null_button.configure(state=DISABLED)])
 
@@ -546,7 +546,7 @@ def AI_side_button():
                                              Label(children,
                                                    text="Пожалуйста, закройте окно и наслаждайтесь игрой =) \n \n "
                                                         "Главный разрабочик - @Cybernetic_Anime_Girl ",
-                                                   font='Times 16').place(x=90, y=200), \
+                                                   font='Times 16').pack(), \
                                              AI_krest_button.configure(state=DISABLED),
                                              AI_null_button.configure(state=DISABLED)])
     AI_krest_button.pack()
