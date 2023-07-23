@@ -551,7 +551,7 @@ def annotation_button():
 def AI_side_button():
     children = Toplevel(root)
     children.title("Игра с ИИ")
-    children.geometry("650x300")
+    children.geometry("650x350")
     global Hakurai_Reimu
     Label(children, text="\n\n\nПожалуйста, выберите, за кого будет играть ИИ", font='Times 20').pack()
 
